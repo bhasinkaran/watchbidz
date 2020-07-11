@@ -1,19 +1,29 @@
 import React, { useEffect, createContext, useState } from 'react';
-import {dbSellers} from './firebase/firebase'
+import { dbSellers } from './firebase/firebase'
 
 const AppState = createContext(null);
 const { Provider } = AppState;
 
 const StateProvider = ({ children }) => {
-        const[sellers, setSellers]=useState("");
+        const [sellers, setSellers] = useState("");
+        const [listed, setListed] = useState("");
+        const [user, setUser] = useState("");
         useEffect(() => {
                 const handleData = snap => {
-                  if (snap.val()) setSellers(snap.val());
+                        if (snap.val()) setSellers(snap.val());
                 }
                 dbSellers.on('value', handleData, error => alert(error));
                 return () => { dbSellers.off('value', handleData); };
-              }, []);
-        const api = {sellers};
+        }, []);
+        useEffect(() => {
+                const handleData = snap => {
+                        if (snap.val()) setListed(snap.val());
+                }
+                dbListed.on('value', handleData, error => alert(error));
+                return () => { dbListed.off('value', handleData); };
+        }, []);
+
+        const api = { sellers, user, listed };
         return <Provider value={api}>{children}</Provider>;
 };
 

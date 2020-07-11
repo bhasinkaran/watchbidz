@@ -3,15 +3,19 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Route } from 'react-router-dom';
 import SignUp from './Seller/SignUp'
+import ListWatch from './Seller/ListWatch'
 import { StateProvider } from './context'
 function App() {
   return (
     <StateProvider >
       <div className="App">
         <BrowserRouter>
+        {/* Seller Links */}
           <Route exact path='/seller/signup' render={() => <SignUp />} />
-          <Route exact path='/' render={() => <div>Homepage</div>} />
+          <Route exact path='/seller/home' render={() => <SignUp />} />
+          <Route exact path='/seller/list' render={() => <ListWatch />} />
 
+          <Route exact path='/' render={() => <div>Homepage</div>} />
         </BrowserRouter>
       </div>
     </StateProvider>

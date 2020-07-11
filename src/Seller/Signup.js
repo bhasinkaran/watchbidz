@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 
 const  SignUp = ()=> {
   const someContext = useContext(AppState);
-  const { sellers } = someContext;
+  const { sellers , setUser} = someContext;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -68,6 +68,7 @@ const  SignUp = ()=> {
         lastName: lname,
         username: username,
       })
+      setUser(username);
     }
   }
 
