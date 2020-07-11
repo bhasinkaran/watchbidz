@@ -1,5 +1,5 @@
 import React, { useEffect, createContext, useState } from 'react';
-import { dbSellers } from './firebase/firebase'
+import { dbSellers , dbListed} from './firebase/firebase'
 
 const AppState = createContext(null);
 const { Provider } = AppState;
@@ -23,7 +23,7 @@ const StateProvider = ({ children }) => {
                 return () => { dbListed.off('value', handleData); };
         }, []);
 
-        const api = { sellers, user, listed };
+        const api = { sellers, user, setUser, listed };
         return <Provider value={api}>{children}</Provider>;
 };
 

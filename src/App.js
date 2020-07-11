@@ -5,6 +5,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import SignUp from './Seller/SignUp'
 import ListWatch from './Seller/ListWatch'
 import { StateProvider } from './context'
+import Homepage from './Seller/Homepage';
 function App() {
   return (
     <StateProvider >
@@ -12,7 +13,7 @@ function App() {
         <BrowserRouter>
         {/* Seller Links */}
           <Route exact path='/seller/signup' render={() => <SignUp />} />
-          <Route exact path='/seller/home' render={() => <SignUp />} />
+          <Route exact path='/seller/home' render={() => <Homepage />} />
           <Route exact path='/seller/list' render={() => <ListWatch />} />
 
           <Route exact path='/' render={() => <div>Homepage</div>} />
