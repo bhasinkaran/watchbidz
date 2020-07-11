@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useContext} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,6 +12,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+
+import { AppState } from '../context';
+import { dbSellers } from '../firebase/firebase';
 
 function Copyright() {
   return (
@@ -47,6 +50,27 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const  SignUp = ()=> {
+  const someContext = useContext(AppState);
+  const { sellers } = someContext;
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [fname, setFname] = useState("");
+  const [lname, setLname] = useState("");
+  const[username, setUsername]=useState("");
+
+  function writeFirebase(){
+    if(!sellers[username]){
+      dbSellers.child(username).set({
+        email: email,
+        password: password,
+        firstName: fname,
+        lastName: lname,
+        username: username,
+      })
+    }
+  }
+
   const classes = useStyles();
   return (
     <Container component="main" maxWidth="xs">
@@ -70,6 +94,10 @@ const  SignUp = ()=> {
                 id="firstName"
                 label="First Name"
                 autoFocus
+                value={fname}
+                onChange = {(event) => {
+                  setFname(event.target.value)
+                }}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -81,6 +109,9 @@ const  SignUp = ()=> {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                onChange = {(event) => {
+                  setLname(event.target.value)
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -92,9 +123,26 @@ const  SignUp = ()=> {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange = {(event) => {
+                  setEmail(event.target.value)
+                }}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="username"
+                label="Username"
+                id="username"
+                autoComplete="current-password"
+                onChange = {(event, newVal) => {
+                  setUsername(event.target.value)
+                }}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
                 required
@@ -104,6 +152,9 @@ const  SignUp = ()=> {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange = {(event) => {
+                  setPassword(event.target.value)
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -119,6 +170,7 @@ const  SignUp = ()=> {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick = {()=> writeFirebase()}
           >
             Sign Up
           </Button>
