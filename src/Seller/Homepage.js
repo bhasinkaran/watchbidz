@@ -5,16 +5,47 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import ListedList from './homepage_components/ListedList'
+import {Divider} from 'semantic-ui-react'
+const useStyles = makeStyles((theme) => ({
+        container: {
+          display: 'grid',
+          gridTemplateColumns: 'repeat(12, 1fr)',
+          gridGap: theme.spacing(3),
+        },
+        paper: {
+          padding: theme.spacing(1),
+          textAlign: 'center',
+          color: theme.palette.text.secondary,
+          whiteSpace: 'nowrap',
+          marginBottom: theme.spacing(1),
+        },
+        divider: {
+          margin: theme.spacing(2, 0),
+        },
+      }));
+
 const Homepage = () => {
-        return(<div>
+        const classes = useStyles();
+        return (<div>
                 <HeaderBar />
-                <Grid container >
-                        <Grid item xs={12}>
-                                <Typography variant="h4" gutterBottom>
+                
+                <Grid container
+                        direction="row"
+                        justify="flex-start"
+                        alignItems="baseline"
+                        margin >
+                        <Grid item xs={5}>
+                                <Typography variant="subtitle1" gutterBottom >
                                         Your Listed Watches
-        </Typography>
+                                </Typography>
                         </Grid>
-                        <Grid item xs={12}>
+                </Grid>
+                <Grid container
+                        direction="row"
+                        justify="flex-start"
+                        alignItems="baseline"
+                        margin>
+                        <Grid item xs={5}>
                                 <ListedList />
                         </Grid>
                 </Grid>
