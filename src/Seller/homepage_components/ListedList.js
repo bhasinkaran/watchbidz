@@ -1,12 +1,15 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
+import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider'
+
 import { List } from '@material-ui/core';
-import {AppState} from '../../context'
+import { AppState } from '../../context'
 
 const useStyles = makeStyles((theme) => ({
         root: {
@@ -49,10 +52,10 @@ const useStyles = makeStyles((theme) => ({
  */
 const ListedList = () => {
         const someContext = useContext(AppState);
-        const { sellers,user, listed } = someContext;
+        const { sellers, user, listed } = someContext;
 
         const classes = useStyles();
-        if(sellers[user]&&sellers[user]['listed'] && listed){
+        if (sellers[user] && sellers[user]['listed'] && listed) {
                 return (
                         <div className={classes.root}>
                                 <GridList className={classes.gridList} cols={2.5}>
@@ -77,9 +80,18 @@ const ListedList = () => {
                         </div>
                 );
         }
-        else{
-                return <div>None listed as of now!</div>
+        else {
+                return (
+                <div>
+                        
+                        None listed as of now!
+                        <Divider />
+                        <Button variant="contained" color="primary" disableElevation>
+                                List a Watch
+                        </Button>
+                </div>
+                )
         }
-        
+
 }
 export default ListedList;

@@ -5,7 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import ListedList from './homepage_components/ListedList'
-import {Divider} from 'semantic-ui-react'
+import Divider from '@material-ui/core/Divider'
+
 const useStyles = makeStyles((theme) => ({
         container: {
           display: 'grid',
@@ -27,8 +28,8 @@ const useStyles = makeStyles((theme) => ({
 const Homepage = () => {
         const classes = useStyles();
         return (<div>
+              
                 <HeaderBar />
-                
                 <Grid container
                         direction="row"
                         justify="flex-start"
@@ -40,6 +41,7 @@ const Homepage = () => {
                                 </Typography>
                         </Grid>
                 </Grid>
+
                 <Grid container
                         direction="row"
                         justify="flex-start"
