@@ -4,8 +4,10 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box'
 import ListedList from './homepage_components/ListedList'
 import Divider from '@material-ui/core/Divider'
+import {Container} from 'semantic-ui-react'
 
 const useStyles = makeStyles((theme) => ({
         container: {
@@ -30,13 +32,16 @@ const Homepage = () => {
         return (<div>
               
                 <HeaderBar />
+                <Box style={{marginLeft:"10px"}}>
                 <Grid container
                         direction="row"
-                        justify="flex-start"
+                        justify="center"
                         alignItems="baseline"
-                        margin >
+                        margin 
+                        style={{marginLeft:"10px"}}
+                        >
                         <Grid item xs={5}>
-                                <Typography variant="subtitle1" gutterBottom >
+                                <Typography variant="h4" gutterBottom >
                                         Your Listed Watches
                                 </Typography>
                         </Grid>
@@ -44,14 +49,18 @@ const Homepage = () => {
 
                 <Grid container
                         direction="row"
-                        justify="flex-start"
+                        justify="center"
                         alignItems="baseline"
-                        margin>
+                        margin
+                        style={{marginLeft:"10px"}}
+
+                        >
                         <Grid item xs={5}>
                                 <ListedList />
                         </Grid>
                 </Grid>
-
+                </Box>
+                
 
         </div>);
 }

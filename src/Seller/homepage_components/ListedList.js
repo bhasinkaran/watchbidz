@@ -60,7 +60,7 @@ const ListedList = () => {
                 return (
                         <div>
                         <div className={classes.root}>
-                                <GridList className={classes.gridList} cols={2.5}>
+                                <GridList className={classes.gridList} cols={Object.values(sellers[user]['listed']).length}>
                                         {Object.values(sellers[user]['listed']).map((item) => (
                                                 <GridListTile key={listed[item].modelNo}>
                                                         <img src={listed[item].photoTime} alt={listed[item].modelNo} />
