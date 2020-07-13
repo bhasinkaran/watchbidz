@@ -79,6 +79,7 @@ const ListWatch = () => {
                         minimumAsk: minimumAsk,
                 })
                 const key = k.getKey();
+                console.log(key);
                 dbSellers.child(user).child('listed').push(key);
                 const uploadCrown = storage.ref(`watches/${key}/crown`).put(photoCrown);
                 uploadCrown.on(
@@ -103,7 +104,7 @@ const ListWatch = () => {
                                         });
                         }
                 );
-                const uploadTime = storage.ref(`watches/${key}/time`).put(photoTime);
+                const uploadTime = storage.ref(`watches/time`).put(photoTime);
                 uploadTime.on(
                         "state_changed",
                         snapshot => {
@@ -122,6 +123,7 @@ const ListWatch = () => {
                                         .child('time')
                                         .getDownloadURL()
                                         .then(url => {
+                                                
                                                 dbListed.child(key).child('photoTime').set(url);
                                         });
                         }
@@ -275,7 +277,6 @@ const ListWatch = () => {
                                                                 required
                                                                 type='file'
                                                                 fullWidth
-
                                                                 onChange={(e) => {
                                                                         console.log(e.target.files[0]);
                                                                         setPhotoLatch(e.target.files[0])
@@ -290,7 +291,7 @@ const ListWatch = () => {
                                                 </Grid>
                                         </Grid>
                                         <Button
-                                                type="submit"
+                                                // type="submit"
                                                 fullWidth
                                                 variant="contained"
                                                 color="primary"

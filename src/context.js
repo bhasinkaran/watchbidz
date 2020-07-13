@@ -8,6 +8,7 @@ const StateProvider = ({ children }) => {
         const [sellers, setSellers] = useState("");
         const [listed, setListed] = useState("");
         const [user, setUser] = useState("");
+        const [logged, setLogged]=useState("");
         useEffect(() => {
                 const handleData = snap => {
                         if (snap.val()) setSellers(snap.val());

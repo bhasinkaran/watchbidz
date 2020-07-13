@@ -9,7 +9,7 @@ import {Button} from 'semantic-ui-react';
 import Divider from '@material-ui/core/Divider'
 
 import { List } from '@material-ui/core';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { AppState } from '../../context'
 
 const useStyles = makeStyles((theme) => ({
@@ -60,7 +60,7 @@ const ListedList = () => {
                 return (
                         <div className={classes.root}>
                                 <GridList className={classes.gridList} cols={2.5}>
-                                        {sellers[user]['listed'].map((tile) => (
+                                        {Object.values(sellers[user]['listed']).map((tile) => (
                                                 <GridListTile key={tile.img}>
                                                         <img src={tile.img} alt={tile.title} />
                                                         <GridListTileBar
@@ -86,6 +86,7 @@ const ListedList = () => {
                 );
         }
         else {
+              if(user) {
                 return (
                         <div>
 
@@ -96,6 +97,10 @@ const ListedList = () => {
                         </Button>
                         </div>
                 )
+              } 
+              else{
+                      return <Redirect to='/seller/login' ></Redirect>
+              }
         }
 
 }

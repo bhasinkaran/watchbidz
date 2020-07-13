@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
+import {Redirect} from 'react-router-dom'
 import { AppState } from '../context';
 import { dbSellers } from '../firebase/firebase';
 
@@ -51,13 +51,14 @@ const useStyles = makeStyles((theme) => ({
 
 const  SignUp = ()=> {
   const someContext = useContext(AppState);
-  const { sellers , setUser} = someContext;
+  const { sellers , user, setUser} = someContext;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
   const[username, setUsername]=useState("");
+  // const [redirect, setRedirect]= useState("");
 
   function writeFirebase(){
     if(!sellers[username]){
@@ -183,6 +184,7 @@ const  SignUp = ()=> {
             </Grid>
           </Grid>
         </form>
+        {user ? <Redirect to='/seller/home' /> : ""}
       </div>
       <Box mt={5}>
         <Copyright />

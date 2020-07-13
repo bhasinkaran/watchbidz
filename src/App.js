@@ -6,6 +6,7 @@ import SignUp from './Seller/SignUp'
 import ListWatch from './Seller/ListWatch'
 import { StateProvider } from './context'
 import Homepage from './Seller/Homepage';
+import SignInSide from './Seller/Login';
 function App() {
   return (
     <StateProvider >
@@ -13,6 +14,7 @@ function App() {
         <BrowserRouter>
         {/* Seller Links */}
           <Route exact path='/seller/signup' render={() => <SignUp />} />
+          <Route exact path='/seller/login' render={() => <SignInSide />} />
           <Route exact path='/seller/home' render={() => <Homepage />} />
           <Route exact path='/seller/listwatch' render={() => <ListWatch />} />
 
