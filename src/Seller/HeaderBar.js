@@ -6,10 +6,13 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import MessageSharpIcon from '@material-ui/icons/MessageSharp';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import WatchIcon from '@material-ui/icons/Watch';
+import FormatListNumberedRtlSharpIcon from '@material-ui/icons/FormatListNumberedRtlSharp';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
@@ -141,12 +144,26 @@ const HeaderBar = ()=> {
         </div>
         <Divider />
         <List>
-          {['Your Listings', 'Past Deals', 'Message Center'].map((text, index) => (
+            <ListItem button key={"Your Listings"}>
+              <ListItemIcon>
+              <WatchIcon />
+                </ListItemIcon>
+              <ListItemText primary={"Your Listings"} />
+            </ListItem>
+            <ListItem button key={"Past Deals"}>
+              <ListItemIcon><FormatListNumberedRtlSharpIcon /> </ListItemIcon>
+              <ListItemText primary={"Past Deals"} />
+            </ListItem>
+            <ListItem button key={"Message Center"}>
+              <ListItemIcon><MessageSharpIcon /></ListItemIcon>
+              <ListItemText primary={"Message Center"} />
+            </ListItem>
+          {/* {['Your Listings', 'Past Deals', 'Message Center'].map((text, index) => (
             <ListItem button key={text}>
-              {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
+              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
-          ))}
+          ))} */}
         </List>
         <Divider />
         {/* <List>

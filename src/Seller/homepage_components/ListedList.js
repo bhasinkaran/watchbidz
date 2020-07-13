@@ -61,17 +61,18 @@ const ListedList = () => {
                         <div>
                         <div className={classes.root}>
                                 <GridList className={classes.gridList} cols={2.5}>
-                                        {Object.values(sellers[user]['listed']).map((tile) => (
-                                                <GridListTile key={tile.img}>
-                                                        <img src={tile.img} alt={tile.title} />
+                                        {Object.values(sellers[user]['listed']).map((item) => (
+                                                <GridListTile key={listed[item].modelNo}>
+                                                        <img src={listed[item].photoTime} alt={listed[item].modelNo} />
                                                         <GridListTileBar
-                                                                title={tile.name}
+                                                                title={listed[item].modelNo}
                                                                 classes={{
                                                                         root: classes.titleBar,
                                                                         title: classes.title,
                                                                 }}
                                                                 actionIcon={
-                                                                        <IconButton aria-label={`star ${tile.title}`}>
+                                                                        <IconButton aria-label={`star `}>
+                                                                                {/* ${item.item}  */}
                                                                                 <StarBorderIcon className={classes.title} />
                                                                         </IconButton>
                                                                 }
