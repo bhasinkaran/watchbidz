@@ -14,7 +14,7 @@ function App() {
         {/* Seller Links */}
           <Route exact path='/seller/signup' render={() => <SignUp />} />
           <Route exact path='/seller/home' render={() => <Homepage />} />
-          <Route exact path='/seller/list' render={() => <ListWatch />} />
+          <Route exact path='/seller/listwatch' render={() => <ListWatch />} />
 
           <Route exact path='/' render={() => <div>Homepage</div>} />
         </BrowserRouter>

@@ -5,10 +5,11 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-import Button from '@material-ui/core/Button';
+import {Button} from 'semantic-ui-react';
 import Divider from '@material-ui/core/Divider'
 
 import { List } from '@material-ui/core';
+import { Link } from 'react-router-dom'
 import { AppState } from '../../context'
 
 const useStyles = makeStyles((theme) => ({
@@ -77,19 +78,23 @@ const ListedList = () => {
                                                 </GridListTile>
                                         ))}
                                 </GridList>
+                                <Divider />
+                                <Button component={Link} href={`/seller/listwatch`} variant="contained" color="primary" disableElevation>
+                                        List Watch
+                        </Button>
                         </div>
                 );
         }
         else {
                 return (
-                <div>
-                        
-                        None listed as of now!
-                        <Divider />
-                        <Button variant="contained" color="primary" disableElevation>
-                                List a Watch
+                        <div>
+
+                                None listed as of now!
+                                <Divider />
+                                <Button as={Link} to={`/seller/listwatch`} variant="contained" color="primary" disableElevation>
+                                        List a Watch
                         </Button>
-                </div>
+                        </div>
                 )
         }
 

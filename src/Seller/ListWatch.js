@@ -12,9 +12,10 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
+import { dbListed, dbSellers } from '../firebase/firebase'
 import { AppState } from '../context';
-import { dbSellers } from '../firebase/firebase';
+import { Input } from '@material-ui/core';
+import storage from '../firebase/firebase'
 
 function Copyright() {
         return (
@@ -50,8 +51,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ListWatch = () => {
+        
         const someContext = useContext(AppState);
-        const { sellers } = someContext;
+        const { user } = someContext;
         const header = 'Shop your piece to +20 dealers, get and we’ll find the highest offer in 3 days.';
         const [manufacturer, setManufacturer] = useState("");
         const [modelNo, setModelNo] = useState("");
@@ -60,22 +62,95 @@ const ListWatch = () => {
         const [minimumAsk, setMinimumAsk] = useState("");
         const [photoCrown, setPhotoCrown] = useState(null);
         const [photoTime, setPhototime] = useState(null);
-        const [photoGeneral, setPhotoGeneral] = useState(null);
+        const [photoLatch, setPhotoLatch] = useState(null);
+        const [urlCrown, setUrlCrown] = useState("");
+        const [urlTime, setUrlTime] = useState("");
+        const [urlLatch, setUrlLatch] = useState("");
 
 
 
 
         function writeFirebase() {
-                //     if(!sellers[username]){
-                //       dbSellers.child(username).set({
-                //         email: email,
-                //         password: password,
-                //         firstName: fname,
-                //         lastName: lname,
-                //         username: username,
-                //       })
-                //     }
+                const k = dbListed.push({
+                        modelNo: modelNo,
+                        manufacturer: manufacturer,
+                        year: year,
+                        boxBool: boxBool,
+                        minimumAsk: minimumAsk,
+                })
+                const key = k.getKey();
+                dbSellers.child(user).child('listed').push(key);
+                const uploadCrown = storage.ref(`watches/${key}/crown`).put(photoCrown);
+                uploadCrown.on(
+                        "state_changed",
+                        snapshot => {
+                                const progress = Math.round(
+                                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                                );
+                                // setProgress(progress);
+                        },
+                        error => {
+                                console.log(error);
+                        },
+                        () => {
+                                storage
+                                        .ref("watches")
+                                        .child(key)
+                                        .child('crown')
+                                        .getDownloadURL()
+                                        .then(url => {
+                                                dbListed.child(key).child('photoCrown').set(url);
+                                        });
+                        }
+                );
+                const uploadTime = storage.ref(`watches/${key}/time`).put(photoTime);
+                uploadTime.on(
+                        "state_changed",
+                        snapshot => {
+                                const progress = Math.round(
+                                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                                );
+                                // setProgress(progress);
+                        },
+                        error => {
+                                console.log(error);
+                        },
+                        () => {
+                                storage
+                                        .ref("watches")
+                                        .child(key)
+                                        .child('time')
+                                        .getDownloadURL()
+                                        .then(url => {
+                                                dbListed.child(key).child('photoTime').set(url);
+                                        });
+                        }
+                );
+                const uploadLatch = storage.ref(`watches/${key}/latch`).put(photoLatch);
+                uploadLatch.on(
+                        "state_changed",
+                        snapshot => {
+                                const progress = Math.round(
+                                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                                );
+                                // setProgress(progress);
+                        },
+                        error => {
+                                console.log(error);
+                        },
+                        () => {
+                                storage
+                                        .ref("watches")
+                                        .child(key)
+                                        .child('latch')
+                                        .getDownloadURL()
+                                        .then(url => {
+                                                dbListed.child(key).child('photoLatch').set(url);
+                                        });
+                        }
+                );
         }
+
 
         const classes = useStyles();
         return (
@@ -148,7 +223,7 @@ const ListWatch = () => {
                 }}
               /> */}
                                                 </Grid>
-                                                <Grid item xs={12} sm={6}>
+                                                <Grid item xs={12} sm={12}>
                                                         <TextField
                                                                 variant="outlined"
                                                                 required
@@ -158,6 +233,52 @@ const ListWatch = () => {
                                                                 id="minAsk"
                                                                 onChange={(event) => {
                                                                         setMinimumAsk(event.target.value)
+                                                                }}
+                                                        />
+                                                </Grid>
+                                                <Grid item xs={12} sm={6}>
+                                                        <Typography style={{ marginTop: "20px" }} component="h5" variant="body1" >Upload Crown Photo:</Typography>
+                                                </Grid>
+                                                <Grid item xs={12} sm={6}>
+                                                        <TextField
+                                                                variant="outlined"
+                                                                required
+                                                                type='file'
+                                                                fullWidth
+
+                                                                onChange={(e) => {
+                                                                        setPhotoCrown(e.target.files[0])
+                                                                }}
+                                                        />
+                                                </Grid>
+                                                <Grid item xs={12} sm={6}>
+                                                        <Typography style={{ marginTop: "20px" }} component="h5" variant="body1" >Upload Photo With Clock @ 11:40:</Typography>
+                                                </Grid>
+                                                <Grid item xs={12} sm={6}>
+                                                        <TextField
+                                                                variant="outlined"
+                                                                required
+                                                                type='file'
+                                                                fullWidth
+
+                                                                onChange={(e) => {
+                                                                        setPhototime(e.target.files[0])
+                                                                }}
+                                                        />
+                                                </Grid>
+                                                <Grid item xs={12} sm={6}>
+                                                        <Typography style={{ marginTop: "20px" }} component="h5" variant="body1" >Upload Photo of Latch:</Typography>
+                                                </Grid>
+                                                <Grid item xs={12} sm={6}>
+                                                        <TextField
+                                                                variant="outlined"
+                                                                required
+                                                                type='file'
+                                                                fullWidth
+
+                                                                onChange={(e) => {
+                                                                        console.log(e.target.files[0]);
+                                                                        setPhotoLatch(e.target.files[0])
                                                                 }}
                                                         />
                                                 </Grid>
@@ -176,7 +297,7 @@ const ListWatch = () => {
                                                 className={classes.submit}
                                                 onClick={() => writeFirebase()}
                                         >
-                                                Sign Up
+                                                List
           </Button>
                                 </form>
                         </div>
