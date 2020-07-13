@@ -58,6 +58,7 @@ const ListedList = () => {
         const classes = useStyles();
         if (sellers[user] && sellers[user]['listed'] && listed) {
                 return (
+                        <div>
                         <div className={classes.root}>
                                 <GridList className={classes.gridList} cols={2.5}>
                                         {Object.values(sellers[user]['listed']).map((tile) => (
@@ -78,10 +79,13 @@ const ListedList = () => {
                                                 </GridListTile>
                                         ))}
                                 </GridList>
-                                <Divider />
+                        </div>
+                        <div>
+                                 <Divider />
                                 <Button as={Link} to={`/seller/listwatch`} variant="contained" color="primary" disableElevation>
                                         List a Watch
                         </Button>
+                        </div>
                         </div>
                 );
         }

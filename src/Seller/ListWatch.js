@@ -105,7 +105,7 @@ const ListWatch = () => {
                                         });
                         }
                 );
-                const uploadTime = storage.ref(`watches/time`).put(photoTime);
+                const uploadTime = storage.ref(`watches/${key}/time`).put(photoTime);
                 uploadTime.on(
                         "state_changed",
                         snapshot => {
