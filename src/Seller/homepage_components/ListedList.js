@@ -79,8 +79,8 @@ const ListedList = () => {
                                         ))}
                                 </GridList>
                                 <Divider />
-                                <Button component={Link} href={`/seller/listwatch`} variant="contained" color="primary" disableElevation>
-                                        List Watch
+                                <Button as={Link} to={`/seller/listwatch`} variant="contained" color="primary" disableElevation>
+                                        List a Watch
                         </Button>
                         </div>
                 );

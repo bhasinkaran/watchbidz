@@ -16,6 +16,7 @@ import { dbListed, dbSellers } from '../firebase/firebase'
 import { AppState } from '../context';
 import { Input } from '@material-ui/core';
 import storage from '../firebase/firebase'
+import { Redirect } from 'react-router-dom';
 
 function Copyright() {
         return (
@@ -155,6 +156,7 @@ const ListWatch = () => {
 
 
         const classes = useStyles();
+        if(user)
         return (
                 <Container component="main" maxWidth="xs">
                         <CssBaseline />
@@ -309,6 +311,9 @@ const ListWatch = () => {
                         </Box>
                 </Container>
         );
+        else{
+                return <Redirect to='/seller/login' />
+        }
 }
 
 export default ListWatch;
