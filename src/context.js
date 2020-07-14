@@ -1,5 +1,5 @@
 import React, { useEffect, createContext, useState } from 'react';
-import { dbSellers , dbListed} from './firebase/firebase'
+import { dbSellers , dbListed, dbBuyers} from './firebase/firebase'
 
 const AppState = createContext(null);
 const { Provider } = AppState;
@@ -9,6 +9,7 @@ const StateProvider = ({ children }) => {
         const [listed, setListed] = useState("");
         const [user, setUser] = useState("");
         const [logged, setLogged]=useState("");
+        const [buyers, setBuyers]=useState("");
         useEffect(() => {
                 const handleData = snap => {
                         if (snap.val()) setSellers(snap.val());
@@ -23,8 +24,15 @@ const StateProvider = ({ children }) => {
                 dbListed.on('value', handleData, error => alert(error));
                 return () => { dbListed.off('value', handleData); };
         }, []);
+        useEffect(() => {
+                const handleData = snap => {
+                        if (snap.val()) setBuyers(snap.val());
+                }
+                dbBuyers.on('value', handleData, error => alert(error));
+                return () => { dbBuyers.off('value', handleData); };
+        }, []);
 
-        const api = { sellers, user, setUser, listed };
+        const api = { sellers, user, setUser, listed, buyers };
         return <Provider value={api}>{children}</Provider>;
 };
 

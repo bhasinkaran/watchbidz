@@ -14,7 +14,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { dbListed, dbSellers } from '../firebase/firebase'
 import { AppState } from '../context';
-import { Input } from '@material-ui/core';
+import { InputLabel, MenuItem, FormControl, Select, Menu } from '@material-ui/core';
+
 import storage from '../firebase/firebase'
 import { Redirect } from 'react-router-dom';
 
@@ -49,10 +50,19 @@ const useStyles = makeStyles((theme) => ({
         submit: {
                 margin: theme.spacing(3, 0, 2),
         },
+        button: {
+                display: 'block',
+                marginTop: theme.spacing(2),
+        },
+        formControl: {
+                margin: theme.spacing(2),
+                minWidth: 400,
+                
+        },
 }));
 
 const ListWatch = () => {
-        
+
         const someContext = useContext(AppState);
         const { user } = someContext;
         const header = 'Shop your piece to +20 dealers, get and we’ll find the highest offer in 3 days.';
@@ -67,6 +77,21 @@ const ListWatch = () => {
         const [urlCrown, setUrlCrown] = useState("");
         const [urlTime, setUrlTime] = useState("");
         const [urlLatch, setUrlLatch] = useState("");
+        const [age, setAge] = React.useState('');
+        const [open, setOpen] = React.useState(false);
+        const brands=["Rolex", "Seiko", "Patek Phelippe"]
+
+        const handleChange = (event) => {
+                setManufacturer(event.target.value);
+        };
+
+        const handleClose = () => {
+                setOpen(false);
+        };
+
+        const handleOpen = () => {
+                setOpen(true);
+        };
 
 
 
@@ -124,7 +149,7 @@ const ListWatch = () => {
                                         .child('time')
                                         .getDownloadURL()
                                         .then(url => {
-                                                
+
                                                 dbListed.child(key).child('photoTime').set(url);
                                         });
                         }
@@ -156,65 +181,88 @@ const ListWatch = () => {
 
 
         const classes = useStyles();
-        if(user)
-        return (
-                <Container component="main" maxWidth="xs">
-                        <CssBaseline />
-                        <div className={classes.paper}>
-                                <Avatar className={classes.avatar}>
-                                        <LockOutlinedIcon />
-                                </Avatar>
-                                <Typography component="h1" variant="h4">
-                                        {header}
-                                </Typography>
-                                <form className={classes.form} noValidate>
-                                        <Grid container spacing={2}>
-                                                <Grid item xs={12} sm={6}>
-                                                        <TextField
-                                                                autoComplete="manufacturer"
-                                                                name="manufacturer"
-                                                                variant="outlined"
-                                                                required
-                                                                fullWidth
-                                                                id="manufacturer"
-                                                                label="Manufacturer"
-                                                                autoFocus
-                                                                value={manufacturer}
-                                                                onChange={(event) => {
-                                                                        setManufacturer(event.target.value)
-                                                                }}
-                                                        />
-                                                </Grid>
-                                                <Grid item xs={12} sm={6}>
-                                                        <TextField
-                                                                variant="outlined"
-                                                                required
-                                                                fullWidth
-                                                                id="modelNo"
-                                                                label="Model Number"
-                                                                name="modelNo"
-                                                                autoComplete="modelNo"
-                                                                onChange={(event) => {
-                                                                        setModelNo(event.target.value)
-                                                                }}
-                                                        />
-                                                </Grid>
-                                                <Grid item xs={12}>
-                                                        <TextField
-                                                                variant="outlined"
-                                                                required
-                                                                fullWidth
-                                                                id="year"
-                                                                label="Year of Purchase"
-                                                                name="year"
-                                                                autoComplete="year"
-                                                                onChange={(event) => {
-                                                                        setYear(event.target.value)
-                                                                }}
-                                                        />
-                                                </Grid>
-                                                <Grid item xs={12} sm={6}>
-                                                        {/* <TextField
+        if (user)
+                return (
+                        <Container component="main" maxWidth="xs">
+                                <CssBaseline />
+                                <div className={classes.paper}>
+                                        <Avatar className={classes.avatar}>
+                                                <LockOutlinedIcon />
+                                        </Avatar>
+                                        <Typography component="h1" variant="h4">
+                                                {header}
+                                        </Typography>
+                                        <form className={classes.form} noValidate>
+                                                <Grid container spacing={2}>
+                                                        <Grid item xs={12} sm={12}>
+                                                                {/* <TextField
+                                                                        autoComplete="manufacturer"
+                                                                        name="manufacturer"
+                                                                        variant="outlined"
+                                                                        required
+                                                                        fullWidth
+                                                                        id="manufacturer"
+                                                                        label="Manufacturer"
+                                                                        autoFocus
+                                                                        value={manufacturer}
+                                                                        onChange={(event) => {
+                                                                                setManufacturer(event.target.value)
+                                                                        }}
+                                                                /> */}
+                                                                <FormControl className={classes.formControl}>
+                                                                                <InputLabel variant='h3' id="demo-controlled-open-select-label">Manufacturer</InputLabel>
+                                                                                <Select
+                                                                                        labelId="demo-controlled-open-select-label"
+                                                                                        id="demo-controlled-open-select"
+                                                                                        open={open}
+                                                                                        onClose={handleClose}
+                                                                                        onOpen={handleOpen}
+                                                                                        value={age}
+                                                                                        onChange={handleChange}
+                                                                                       required
+                                                                                       fullWidth
+                                                                                >
+                                                                                        <MenuItem value="">
+                                                                                                <em>Select</em>
+                                                                                        </MenuItem>
+                                                                                        {
+                                                                                                brands.map(id=>
+                                                                                                        <MenuItem value={id}>{id}</MenuItem>
+                                                                                                        )
+                                                                                        }
+                                                                                </Select>
+                                                                        </FormControl>
+                                                        </Grid>
+                                                        <Grid item xs={12} sm={12}>
+                                                                <TextField
+                                                                        variant="outlined"
+                                                                        required
+                                                                        fullWidth
+                                                                        id="modelNo"
+                                                                        label="Model Number"
+                                                                        name="modelNo"
+                                                                        autoComplete="modelNo"
+                                                                        onChange={(event) => {
+                                                                                setModelNo(event.target.value)
+                                                                        }}
+                                                                />
+                                                        </Grid>
+                                                        <Grid item xs={12}>
+                                                                <TextField
+                                                                        variant="outlined"
+                                                                        required
+                                                                        fullWidth
+                                                                        id="year"
+                                                                        label="Year of Purchase"
+                                                                        name="year"
+                                                                        autoComplete="year"
+                                                                        onChange={(event) => {
+                                                                                setYear(event.target.value)
+                                                                        }}
+                                                                />
+                                                        </Grid>
+                                                        <Grid item xs={12} sm={6}>
+                                                                {/* <TextField
                 variant="outlined"
                 required
                 fullWidth
@@ -226,92 +274,100 @@ const ListWatch = () => {
                   setUsername(event.target.value)
                 }}
               /> */}
-                                                </Grid>
-                                                <Grid item xs={12} sm={12}>
-                                                        <TextField
-                                                                variant="outlined"
-                                                                required
-                                                                fullWidth
-                                                                name="minAsk"
-                                                                label="Minimum Ask"
-                                                                id="minAsk"
-                                                                onChange={(event) => {
-                                                                        setMinimumAsk(event.target.value)
-                                                                }}
-                                                        />
-                                                </Grid>
-                                                <Grid item xs={12} sm={6}>
-                                                        <Typography style={{ marginTop: "20px" }} component="h5" variant="body1" >Upload Crown Photo:</Typography>
-                                                </Grid>
-                                                <Grid item xs={12} sm={6}>
-                                                        <TextField
-                                                                variant="outlined"
-                                                                required
-                                                                type='file'
-                                                                fullWidth
+                                                        </Grid>
+                                                        <Grid item xs={12} sm={12}>
+                                                                <TextField
+                                                                        variant="outlined"
+                                                                        required
+                                                                        fullWidth
+                                                                        name="minAsk"
+                                                                        label="Minimum Ask"
+                                                                        id="minAsk"
+                                                                        onChange={(event) => {
+                                                                                setMinimumAsk(event.target.value)
+                                                                        }}
+                                                                />
+                                                        </Grid>
+                                                        <Grid item xs={12} sm={6}>
+                                                                <Typography style={{ marginTop: "20px" }} component="h5" variant="body1" >Upload Crown Photo:</Typography>
+                                                        </Grid>
+                                                        <Grid item xs={12} sm={6}>
+                                                                <TextField
+                                                                        variant="outlined"
+                                                                        required
+                                                                        type='file'
+                                                                        fullWidth
 
-                                                                onChange={(e) => {
-                                                                        setPhotoCrown(e.target.files[0])
-                                                                }}
-                                                        />
-                                                </Grid>
-                                                <Grid item xs={12} sm={6}>
-                                                        <Typography style={{ marginTop: "20px" }} component="h5" variant="body1" >Upload Photo With Clock @ 11:40:</Typography>
-                                                </Grid>
-                                                <Grid item xs={12} sm={6}>
-                                                        <TextField
-                                                                variant="outlined"
-                                                                required
-                                                                type='file'
-                                                                fullWidth
+                                                                        onChange={(e) => {
+                                                                                setPhotoCrown(e.target.files[0])
+                                                                        }}
+                                                                />
+                                                        </Grid>
+                                                        <Grid item xs={12} sm={6}>
+                                                                <Typography style={{ marginTop: "20px" }} component="h5" variant="body1" >Upload Photo With Clock @ 11:40:</Typography>
+                                                        </Grid>
+                                                        <Grid item xs={12} sm={6}>
+                                                                <TextField
+                                                                        variant="outlined"
+                                                                        required
+                                                                        type='file'
+                                                                        fullWidth
 
-                                                                onChange={(e) => {
-                                                                        setPhototime(e.target.files[0])
-                                                                }}
-                                                        />
+                                                                        onChange={(e) => {
+                                                                                setPhototime(e.target.files[0])
+                                                                        }}
+                                                                />
+                                                        </Grid>
+                                                        <Grid item xs={12} sm={6}>
+                                                                <Typography style={{ marginTop: "20px" }} component="h5" variant="body1" >Upload Photo of Latch:</Typography>
+                                                        </Grid>
+                                                        <Grid item xs={12} sm={6}>
+                                                                <TextField
+                                                                        variant="outlined"
+                                                                        required
+                                                                        type='file'
+                                                                        fullWidth
+                                                                        onChange={(e) => {
+                                                                                console.log(e.target.files[0]);
+                                                                                setPhotoLatch(e.target.files[0])
+                                                                        }}
+                                                                />
+                                                        </Grid>
+                                                        <Grid item xs={12}>
+                                                                <FormControlLabel
+                                                                        control={<Checkbox value={boxBool} color="primary" onChange={(event) => setBoxBool(event.target.checked)} />}
+                                                                        label="I have the box and papers from the manfucaturing company."
+                                                                />
+                                                        </Grid>
+                                                        <Grid item xs={12}>
+                                                                <div>
+                                                                        {/* <Button className={classes.button} onClick={handleOpen}>
+                                                                                Open the select
+      </Button> */}
+                                                                        
+                                                                </div>
+                                                        </Grid>
                                                 </Grid>
-                                                <Grid item xs={12} sm={6}>
-                                                        <Typography style={{ marginTop: "20px" }} component="h5" variant="body1" >Upload Photo of Latch:</Typography>
-                                                </Grid>
-                                                <Grid item xs={12} sm={6}>
-                                                        <TextField
-                                                                variant="outlined"
-                                                                required
-                                                                type='file'
-                                                                fullWidth
-                                                                onChange={(e) => {
-                                                                        console.log(e.target.files[0]);
-                                                                        setPhotoLatch(e.target.files[0])
-                                                                }}
-                                                        />
-                                                </Grid>
-                                                <Grid item xs={12}>
-                                                        <FormControlLabel
-                                                                control={<Checkbox value={boxBool} color="primary" onChange={(event) => setBoxBool(event.target.checked)} />}
-                                                                label="I have the box and papers from the manfucaturing company."
-                                                        />
-                                                </Grid>
-                                        </Grid>
-                                        <Button
-                                                // type="submit"
-                                                fullWidth
-                                                variant="contained"
-                                                color="primary"
-                                                className={classes.submit}
-                                                onClick={() => writeFirebase()}
-                                        >
-                                                List
+                                                <Button
+                                                        // type="submit"
+                                                        fullWidth
+                                                        variant="contained"
+                                                        color="primary"
+                                                        className={classes.submit}
+                                                        onClick={() => writeFirebase()}
+                                                >
+                                                        List
           </Button>
-                                </form>
-                        </div>
-                        <Box mt={5}>
-                                <Typography component="h1" variant="h4">
-                                        I certify that all information provided here is accurate to the best of my knowledge.
+                                        </form>
+                                </div>
+                                <Box mt={5}>
+                                        <Typography component="h1" variant="h4">
+                                                I certify that all information provided here is accurate to the best of my knowledge.
                                 </Typography>
-                        </Box>
-                </Container>
-        );
-        else{
+                                </Box>
+                        </Container>
+                );
+        else {
                 return <Redirect to='/seller/login' />
         }
 }
