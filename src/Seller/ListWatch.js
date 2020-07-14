@@ -79,7 +79,9 @@ const ListWatch = () => {
         const [urlLatch, setUrlLatch] = useState("");
         const [age, setAge] = React.useState('');
         const [open, setOpen] = React.useState(false);
-        const brands=["Rolex", "Seiko", "Patek Phelippe"]
+        const brands=["Rolex", "A Lange and Sohne", "Audemars Piguet", "Blancpain", "Breitling", "Cartier", "FP Journe", "Glashutte Original", 
+        "Grand Seiko", "H Moser & Cie", "Hublot", "IWC", "Jaeger LeCoultre", "Nomos Glashutte", "Omega" ,"Panerai", 
+        "Patek Philippe", "Tag Heuer", 'Tudor', "Vacheron Constantin", "Zenith"];
 
         const handleChange = (event) => {
                 setManufacturer(event.target.value);
