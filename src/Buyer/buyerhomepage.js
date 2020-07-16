@@ -10,10 +10,6 @@ import { AppState } from '../context';
 const BuyerHomepage = () => {
         const { listed, user } = useContext(AppState);
         const [relevant, setRelevant] = useState([]);
-        const [songimages, setImages] = useState([]);
-        const [orderedSongs, setOrderedSongs] = useState([]);
-        var array = [...Array(20).keys()];
-        const [indexarray, setIndex] = useState(array);
         const [filter, setFilter] = useState("All");
         const [brands, setBrands] = useState([]);
         const brands_list = ["All","Rolex", "A Lange and Sohne", "Audemars Piguet", "Blancpain", "Breitling", "Cartier", "FP Journe", "Glashutte Original",
@@ -60,7 +56,7 @@ const BuyerHomepage = () => {
                 }
                 else {
                         // console.log(imageurl)
-                        return ;
+                        return null;
                 }
         }
         
