@@ -60,7 +60,7 @@ const BuyerHomepage = () => {
                 }
                 else {
                         // console.log(imageurl)
-                        return "null";
+                        return ;
                 }
         }
         
