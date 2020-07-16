@@ -11,7 +11,11 @@
     ],
     "rewrites": [
       {
-        "source": "/timestamp",
+        "source": "/app",
+        "function": "app"
+      },
+      {
+        "source": "/checkout",
         "function": "app"
       },
       {
