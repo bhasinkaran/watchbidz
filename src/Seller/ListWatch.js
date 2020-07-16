@@ -105,6 +105,7 @@ const ListWatch = () => {
                         year: year,
                         boxBool: boxBool,
                         minimumAsk: minimumAsk,
+                        lister: user
                 })
                 const key = k.getKey();
                 console.log(key);
