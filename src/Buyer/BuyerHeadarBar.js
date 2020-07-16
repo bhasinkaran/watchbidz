@@ -91,11 +91,12 @@ const HeaderBar = ()=> {
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
-    setTimeout(()=>setOpen(true), 500)    
+        setTimeout(()=>setOpen(true), 3000)    
+//     setOpen(true);
   };
 
   const handleDrawerClose = () => {
-    setTimeout(()=>setOpen(false), 500)    
+        setTimeout(()=>setOpen(false), 3000)    
   };
 
   return (
@@ -144,7 +145,7 @@ const HeaderBar = ()=> {
         </div>
         <Divider />
         <List>
-            <ListItem button key={"Your Listings"} onClick={()=>console.log('listings')} >
+            <ListItem button key={"Your Listings"}>
               <ListItemIcon>
               <WatchIcon />
                 </ListItemIcon>
