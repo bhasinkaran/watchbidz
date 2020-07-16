@@ -21,10 +21,11 @@ const BuyerHomepage = () => {
                 for(let i = 0; i<brands_list.length;i++){
                         builder.push({
                                 key:i,
-                                value: brands[i],
-                                text: brands[i]
+                                value: brands_list[i],
+                                text: brands_list[i]
                         });
                 }
+                console.log(builder);
                 setBrands(builder);
         }        
         useEffect(setOptions, []);
@@ -69,6 +70,7 @@ const BuyerHomepage = () => {
                         <Grid padded centered>
                         <Grid.Row>
                                 <Grid.Column>
+                                        
                                 {/* <div style={{ marginTop: "0px", marginLeft: "0px", marginBottom: "0px", textAlign: "start" }}> */}
                                         <Menu compact>
                                                 <Dropdown text={filter}
