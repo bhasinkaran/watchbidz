@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -74,6 +74,7 @@ const ListWatch = () => {
         const [photoCrown, setPhotoCrown] = useState(null);
         const [photoTime, setPhototime] = useState(null);
         const [photoLatch, setPhotoLatch] = useState(null);
+        const [redirect, setRedirect]= useState(false);
         const [urlCrown, setUrlCrown] = useState("");
         const [urlTime, setUrlTime] = useState("");
         const [urlLatch, setUrlLatch] = useState("");
@@ -130,6 +131,7 @@ const ListWatch = () => {
                                         .getDownloadURL()
                                         .then(url => {
                                                 dbListed.child(key).child('photoCrown').set(url);
+                                                setUrlCrown(url);
                                         });
                         }
                 );
@@ -154,6 +156,7 @@ const ListWatch = () => {
                                         .then(url => {
 
                                                 dbListed.child(key).child('photoTime').set(url);
+                                                setUrlTime(url);
                                         });
                         }
                 );
@@ -176,15 +179,25 @@ const ListWatch = () => {
                                         .child('latch')
                                         .getDownloadURL()
                                         .then(url => {
+                                                
                                                 dbListed.child(key).child('photoLatch').set(url);
+                                                setUrlLatch(url);
                                         });
                         }
                 );
         }
+        useEffect(()=>{
+                console.log('outside in useEffect');
+                if(urlCrown!=""&&urlLatch!=""&&urlTime!=""){
+                        setRedirect(true);
+                        console.log('INSIDE');
+                }
+        }
+        ,[urlCrown,urlLatch,urlTime])
 
 
         const classes = useStyles();
-        if (user)
+        if (user&&!redirect)
                 return (
                         <Container component="main" maxWidth="xs">
                                 <CssBaseline />
@@ -220,7 +233,7 @@ const ListWatch = () => {
                                                                                         open={open}
                                                                                         onClose={handleClose}
                                                                                         onOpen={handleOpen}
-                                                                                        value={age}
+                                                                                        value={manufacturer}
                                                                                         onChange={handleChange}
                                                                                        required
                                                                                        fullWidth
@@ -370,8 +383,14 @@ const ListWatch = () => {
                                 </Box>
                         </Container>
                 );
-        else {
+        else if(!user) {
                 return <Redirect to='/seller/login' />
+        }
+        else{
+                if(redirect){
+                        console.log("Inside")
+                        return <Redirect to='/seller/home' />
+                }
         }
 }
 
