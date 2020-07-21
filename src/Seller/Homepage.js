@@ -8,7 +8,7 @@ import Box from '@material-ui/core/Box'
 import ListedList from './homepage_components/ListedList'
 import Divider from '@material-ui/core/Divider'
 import {Container} from 'semantic-ui-react'
-
+import ListWatchModal from './Modal/ListWatchModal'
 const useStyles = makeStyles((theme) => ({
         container: {
           display: 'grid',
@@ -33,6 +33,7 @@ const Homepage = () => {
               
                 <HeaderBar />
                 <Box style={{marginLeft:"10px"}}>
+                <ListWatchModal  />
                 <Grid container
                         direction="row"
                         justify="center"

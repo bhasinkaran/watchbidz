@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
 const ListWatch = () => {
 
         const someContext = useContext(AppState);
-        const { user } = someContext;
+        const { user,showListed, setShowListed } = someContext;
         const header = 'Shop your piece to +20 dealers, get and we’ll find the highest offer in 3 days.';
         const [manufacturer, setManufacturer] = useState("");
         const [modelNo, setModelNo] = useState("");
@@ -185,6 +185,7 @@ const ListWatch = () => {
                                         });
                         }
                 );
+                setShowListed(true);
         }
         useEffect(()=>{
                 console.log('outside in useEffect');
@@ -197,7 +198,7 @@ const ListWatch = () => {
 
 
         const classes = useStyles();
-        if (true)
+        if (user&&!redirect)
         // user&&!redirect
                 return (
                         <Container component="main" maxWidth="xs">

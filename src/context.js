@@ -10,6 +10,8 @@ const StateProvider = ({ children }) => {
         const [user, setUser] = useState("");
         const [logged, setLogged]=useState("");
         const [buyers, setBuyers]=useState("");
+        const [showListed, setShowListed]=useState(false);
+
         useEffect(() => {
                 const handleData = snap => {
                         if (snap.val()) setSellers(snap.val());
@@ -32,7 +34,7 @@ const StateProvider = ({ children }) => {
                 return () => { dbBuyers.off('value', handleData); };
         }, []);
 
-        const api = { sellers, user, setUser, listed, buyers };
+        const api = { sellers, user, setShowListed, showListed, setUser, listed, buyers };
         return <Provider value={api}>{children}</Provider>;
 };
 
