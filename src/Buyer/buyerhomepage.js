@@ -76,7 +76,7 @@ const BuyerHomepage = () => {
                                                 <Card key={id.toString()} >
                                                         {/* <Link to={`/track/${[id]}`} > */}
 
-                                                        <Image size='medium' rounded verticalAlign='middle' src={img} />
+                                                        <Image size='medium' centered rounded verticalAlign='middle' src={img} />
                                                         <Card.Content>
                                                                 <Header textAlign='center'>{listed[id]['modelNo']}</Header>
                                                                 <Card.Meta>{listed[id]['minimumAsk']}</Card.Meta>
@@ -89,10 +89,11 @@ const BuyerHomepage = () => {
                                                 </Card>
                                         }
                                 >
-                                        <Popup.Header>See more from {listed[id]['lister']}</Popup.Header>
-                                        <Popup.Content>
-                                                <Rating icon='star' defaultRating={3} maxRating={4} />
-                                        </Popup.Content>
+                                        <Popup.Header>See more </Popup.Header>
+                                        {/* from {listed[id]['lister']} */}
+                                        {/* <Popup.Content>
+                                                 <Rating icon='star' defaultRating={3} maxRating={4} /> 
+                                        </Popup.Content> */}
                                 </Popup>);
                 }
                 else {
@@ -122,9 +123,6 @@ const BuyerHomepage = () => {
                                                         </Form>
                                                 </Grid.Column>
                                         </Grid.Row>
-                                        {/* <Grid.Row >
-                                                {relevant.length > 0 ? relevant.map(id => <ReturnWatch key={id.toString()} id={id} />) : ""}
-                                        </Grid.Row> */}
 
                                         <Card.Group itemsPerRow={3}>
                                                 {relevant.length > 0 ? relevant.map(id => <ReturnWatchCard key={id.toString()} id={id} />) : ""}
