@@ -85,18 +85,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const HeaderBar = ()=> {
+const BuyerHeaderBar = ()=> {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
-        setTimeout(()=>setOpen(true), 3000)    
+        setTimeout(()=>setOpen(true), 10)    
 //     setOpen(true);
   };
 
   const handleDrawerClose = () => {
-        setTimeout(()=>setOpen(false), 3000)    
+        setTimeout(()=>setOpen(false), 10)    
   };
 
   return (
@@ -183,4 +183,4 @@ const HeaderBar = ()=> {
     </div>
   );
 }
-export default HeaderBar;
+export default BuyerHeaderBar;

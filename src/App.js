@@ -11,7 +11,22 @@ import SignUpBuyer from './Buyer/SignUpBuyer'
 import TestStripe from './testStripe'
 import BuyerHomepage from './Buyer/buyerhomepage';
 import SignInSideBuyer from './Buyer/SignInSideBuyer'
+import HeaderBar from './Seller/HeaderBar';
+import BuyerHeaderBar from './Buyer/BuyerHeaderBar';
+
 function App() {
+  function withSellerMenu(page){
+    return(<div>
+      <HeaderBar/>
+      {page}
+    </div>);
+  }
+  function withBuyerMenu(page){
+    return(<div>
+      <BuyerHeaderBar/>
+      {page}
+    </div>);
+  }
   return (
     <StateProvider >
       <div className="App">
@@ -19,13 +34,13 @@ function App() {
         {/* Seller Links */}
           <Route exact path='/seller/signup' render={() => <SignUp />} />
           <Route exact path='/seller/login' render={() => <SignInSide />} />
-          <Route exact path='/seller/home' render={() => <Homepage />} />
+          <Route exact path='/seller/home' render={() => withSellerMenu(<Homepage />)} />
           <Route exact path='/seller/listwatch' render={() => <ListWatch />} />
 
          {/* Buyer Links */}
          <Route exact path='/buyer/signup' render={() => <SignUpBuyer />} />
           <Route exact path='/buyer/login' render={() => <SignInSideBuyer />} />
-          <Route exact path='/buyer/home' render={() => <BuyerHomepage />} />
+          <Route exact path='/buyer/home' render={() => withBuyerMenu(<BuyerHomepage />)} />
           {/* <Route exact path='/seller/listwatch' render={() => <ListWatch />} /> */}
 
           <Route exact path='/' render={() => <TestStripe />} />

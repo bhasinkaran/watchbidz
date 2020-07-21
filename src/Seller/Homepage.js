@@ -31,7 +31,7 @@ const Homepage = () => {
         const classes = useStyles();
         return (<div>
               
-                <HeaderBar />
+                
                 <Box style={{marginLeft:"10px"}}>
                 <ListWatchModal  />
                 <Grid container
