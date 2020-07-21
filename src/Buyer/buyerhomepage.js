@@ -1,9 +1,10 @@
 
 import React, { useState, useEffect, isValidElement, useContext } from 'react';
-import { Grid, Image, Header, Search, Popup, Rating, Card, Button, Container, Menu, Dropdown } from 'semantic-ui-react'
+import { Grid, Form, Image, Header, Search, Popup, Rating, Card, Button, Container, Menu, Dropdown } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { AppState } from '../context';
+import HeaderBar from '../Seller/HeaderBar';
 // import { Card } from '@material-ui/core';
 
 
@@ -67,31 +68,31 @@ const BuyerHomepage = () => {
                 if (img) {
                         //      console.log(imageurl);
                         return (
-                                
 
-                        <Popup
-                                trigger={
-                                        <Card key={id.toString()} mobile={8} tablet={4} computer={84} id={id}>
-                                        {/* <Link to={`/track/${[id]}`} > */}
 
-                                        <Image size='medium' rounded verticalAlign='middle' src={img} />
-                                        <Card.Content>
-                                                <Header textAlign='center'>{listed[id]['modelNo']}</Header>
-                                                <Card.Meta>{listed[id]['minimumAsk']}</Card.Meta>
-                                        </Card.Content>
-                                        <Card.Content extra>
-                                                {listed[id]['boxBool'] ? "Has " : "Does not have"} papers from  {listed[id]['manufacturer']}
-                                        </Card.Content>
-                                        {/* </Link> */}
-                                        <br></br>
-                                </Card>
-                                }
-                        >
-                                <Popup.Header>See more from {listed[id]['lister']}</Popup.Header>
-                                <Popup.Content>
-                                        <Rating icon='star' defaultRating={3} maxRating={4} />
-                                </Popup.Content>
-                        </Popup>);
+                                <Popup
+                                        trigger={
+                                                <Card key={id.toString()} mobile={8} tablet={4} computer={84} id={id}>
+                                                        {/* <Link to={`/track/${[id]}`} > */}
+
+                                                        <Image size='medium' rounded verticalAlign='middle' src={img} />
+                                                        <Card.Content>
+                                                                <Header textAlign='center'>{listed[id]['modelNo']}</Header>
+                                                                <Card.Meta>{listed[id]['minimumAsk']}</Card.Meta>
+                                                        </Card.Content>
+                                                        <Card.Content extra>
+                                                                {listed[id]['boxBool'] ? "Has " : "Does not have"} papers from  {listed[id]['manufacturer']}
+                                                        </Card.Content>
+                                                        {/* </Link> */}
+                                                        <br></br>
+                                                </Card>
+                                        }
+                                >
+                                        <Popup.Header>See more from {listed[id]['lister']}</Popup.Header>
+                                        <Popup.Content>
+                                                <Rating icon='star' defaultRating={3} maxRating={4} />
+                                        </Popup.Content>
+                                </Popup>);
                 }
                 else {
                         // console.log(imageurl)
@@ -107,21 +108,27 @@ const BuyerHomepage = () => {
                                 <Header size='huge'>Inventory</Header>
                                 <Grid padded centered>
                                         <Grid.Row>
-                                                <Grid.Column>
+                                                <Grid.Column floated='right' >
 
                                                         {/* <div style={{ marginTop: "0px", marginLeft: "0px", marginBottom: "0px", textAlign: "start" }}> */}
-                                                        <Menu compact>
-                                                                <Dropdown text={filter}
+                                                        <Form>
+                                                                <Form.Select
+                                                                        text={filter}
                                                                         options={brands}
-                                                                        simple item
-                                                                        onChange={(e, { value }) => setFilter(value)} />
-                                                        </Menu>
+                                                                        label="Filter Brands "
+                                                                        // simple item
+                                                                        onChange={(e, { value }) => setFilter(value)}
+                                                                >
+                                                                        {/* <Dropdown  /> */}
+                                                                </Form.Select>
+                                                        </Form>
                                                         {/* </div> */}
                                                 </Grid.Column>
                                         </Grid.Row>
                                         {/* <Grid.Row >
                                                 {relevant.length > 0 ? relevant.map(id => <ReturnWatch key={id.toString()} id={id} />) : ""}
                                         </Grid.Row> */}
+
                                         <Card.Group>
                                                 {relevant.length > 0 ? relevant.map(id => <ReturnWatchCard key={id.toString()} id={id} />) : ""}
 
