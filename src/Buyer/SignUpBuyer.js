@@ -256,7 +256,7 @@ const  SignUpBuyer = ()=> {
             </Grid>
           </Grid>
         </form>
-        {user ? <Redirect to='/seller/home' /> : ""}
+        {user ? <Redirect to='/buyer/home' /> : ""}
       </div>
       <Box mt={5}>
         <Copyright />

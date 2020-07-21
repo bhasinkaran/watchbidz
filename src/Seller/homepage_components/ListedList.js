@@ -60,7 +60,7 @@ const ListedList = () => {
                 return (
                         <div>
                         <div className={classes.root}>
-                                <GridList className={classes.gridList} cols={Math.min(Object.values(sellers[user]['listed']).length,3)}>
+                                <GridList className={classes.gridList} cols={Math.min(Object.values(sellers[user]['listed']).length,5)}>
                                         {/* Object.values(sellers[user]['listed']).length */}
                                         {Object.values(sellers[user]['listed']).map((item) => (
                                                 <GridListTile key={listed[item].modelNo}>

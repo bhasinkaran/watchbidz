@@ -10,6 +10,7 @@ import SignInSide from './Seller/Login';
 import SignUpBuyer from './Buyer/SignUpBuyer'
 import TestStripe from './testStripe'
 import BuyerHomepage from './Buyer/buyerhomepage';
+import SignInSideBuyer from './Buyer/SignInSideBuyer'
 function App() {
   return (
     <StateProvider >
@@ -23,7 +24,7 @@ function App() {
 
          {/* Buyer Links */}
          <Route exact path='/buyer/signup' render={() => <SignUpBuyer />} />
-          <Route exact path='/buyer/login' render={() => <SignInSide />} />
+          <Route exact path='/buyer/login' render={() => <SignInSideBuyer />} />
           <Route exact path='/buyer/home' render={() => <BuyerHomepage />} />
           {/* <Route exact path='/seller/listwatch' render={() => <ListWatch />} /> */}
 
