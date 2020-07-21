@@ -72,7 +72,8 @@ const BuyerHomepage = () => {
 
                                 <Popup
                                         trigger={
-                                                <Card key={id.toString()} mobile={8} tablet={4} computer={84} id={id}>
+                                                // mobile={8} tablet={4} computer={} id={id}
+                                                <Card key={id.toString()} >
                                                         {/* <Link to={`/track/${[id]}`} > */}
 
                                                         <Image size='medium' rounded verticalAlign='middle' src={img} />
@@ -109,8 +110,6 @@ const BuyerHomepage = () => {
                                 <Grid padded centered>
                                         <Grid.Row>
                                                 <Grid.Column floated='right' >
-
-                                                        {/* <div style={{ marginTop: "0px", marginLeft: "0px", marginBottom: "0px", textAlign: "start" }}> */}
                                                         <Form>
                                                                 <Form.Select
                                                                         text={filter}
@@ -119,17 +118,15 @@ const BuyerHomepage = () => {
                                                                         // simple item
                                                                         onChange={(e, { value }) => setFilter(value)}
                                                                 >
-                                                                        {/* <Dropdown  /> */}
                                                                 </Form.Select>
                                                         </Form>
-                                                        {/* </div> */}
                                                 </Grid.Column>
                                         </Grid.Row>
                                         {/* <Grid.Row >
                                                 {relevant.length > 0 ? relevant.map(id => <ReturnWatch key={id.toString()} id={id} />) : ""}
                                         </Grid.Row> */}
 
-                                        <Card.Group>
+                                        <Card.Group itemsPerRow={3}>
                                                 {relevant.length > 0 ? relevant.map(id => <ReturnWatchCard key={id.toString()} id={id} />) : ""}
 
                                         </Card.Group>
