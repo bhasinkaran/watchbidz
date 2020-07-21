@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
                 marginTop: theme.spacing(2),
         },
         formControl: {
-                margin: theme.spacing(2),
+                margin: theme.spacing(0),
                 minWidth: 400,
                 
         },
@@ -197,7 +197,8 @@ const ListWatch = () => {
 
 
         const classes = useStyles();
-        if (user&&!redirect)
+        if (true)
+        // user&&!redirect
                 return (
                         <Container component="main" maxWidth="xs">
                                 <CssBaseline />
@@ -211,20 +212,7 @@ const ListWatch = () => {
                                         <form className={classes.form} noValidate>
                                                 <Grid container spacing={2}>
                                                         <Grid item xs={12} sm={12}>
-                                                                {/* <TextField
-                                                                        autoComplete="manufacturer"
-                                                                        name="manufacturer"
-                                                                        variant="outlined"
-                                                                        required
-                                                                        fullWidth
-                                                                        id="manufacturer"
-                                                                        label="Manufacturer"
-                                                                        autoFocus
-                                                                        value={manufacturer}
-                                                                        onChange={(event) => {
-                                                                                setManufacturer(event.target.value)
-                                                                        }}
-                                                                /> */}
+                                                                
                                                                 <FormControl className={classes.formControl}>
                                                                                 <InputLabel variant='h3' id="demo-controlled-open-select-label">Manufacturer</InputLabel>
                                                                                 <Select

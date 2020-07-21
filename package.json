@@ -11,6 +11,7 @@
     "axios": "^0.19.2",
     "cors": "^2.8.5",
     "firebase": "^7.16.0",
+    "firebase-tools": "^8.6.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
