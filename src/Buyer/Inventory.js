@@ -36,7 +36,7 @@ const Inventory = () => {
         function initializeState() {
                 let temp = [];
                 Object.keys(listed).map(id => {
-                        if ((filter == "All" || filter == listed[id]['manufacturer'])&&listed[id]['active'==true]) {
+                        if ((filter == "All" || filter == listed[id]['manufacturer'])&&listed[id]['active']==true) {
                                 temp.push(id);
                         }
                 })
