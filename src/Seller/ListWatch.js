@@ -106,11 +106,15 @@ const ListWatch = () => {
                         year: year,
                         boxBool: boxBool,
                         minimumAsk: minimumAsk,
-                        lister: user
+                        lister: user,
+                        active: false,
+                        "createdAt": {'.sv': 'timestamp'}
                 })
                 const key = k.getKey();
                 console.log(key);
                 dbSellers.child(user).child('listed').push(key);
+                dbListed.child(key).child('id').set(key);
+
                 const uploadCrown = storage.ref(`watches/${key}/crown`).put(photoCrown);
                 uploadCrown.on(
                         "state_changed",

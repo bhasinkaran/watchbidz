@@ -13,6 +13,7 @@ import BuyerHomepage from './Buyer/buyerhomepage';
 import SignInSideBuyer from './Buyer/SignInSideBuyer'
 import HeaderBar from './Seller/HeaderBar';
 import BuyerHeaderBar from './Buyer/BuyerHeaderBar';
+import Inventory from './Buyer/Inventory';
 
 function App() {
   function withSellerMenu(page){
@@ -41,6 +42,8 @@ function App() {
          <Route exact path='/buyer/signup' render={() => <SignUpBuyer />} />
           <Route exact path='/buyer/login' render={() => <SignInSideBuyer />} />
           <Route exact path='/buyer/home' render={() => withBuyerMenu(<BuyerHomepage />)} />
+          <Route exact path='/buyer/inventory' render={() => withBuyerMenu(<Inventory />)} />
+
           {/* <Route exact path='/seller/listwatch' render={() => <ListWatch />} /> */}
 
           <Route exact path='/' render={() => <TestStripe />} />
