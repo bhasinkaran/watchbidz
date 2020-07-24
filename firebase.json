@@ -16,6 +16,14 @@
       "**/node_modules/**"
     ],
     "rewrites": [
+      {	
+        "source": "/app",	
+        "function": "app"	
+      },	
+      {	
+        "source": "/checkout",	
+        "function": "app"	
+      },
       {
         "source": "**",
         "destination": "/index.html"

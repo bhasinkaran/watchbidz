@@ -1,7 +1,7 @@
 const functions = require('firebase-functions');
 const cors = require("cors");
 const express = require("express");
-const stripe = require("stripe")("sk_test_51H5TONDloTph5relPle8FAjS6XAupLCacktFzIWpUYJaRDyUUjNtJytUVMNNVqSdKgrRjL6kjGEIf89HjIr90vGV00mCow7kA7");
+const stripe = require("stripe")("sk_test_51H73o1DdNi861xSpiz3iad8kOXiz6i9at5DyiBZEfSFQ7t10mMkk88WQQMC88viTHhgXJwHVzyZAZ5XL53bVC56u00THDfRkte");
 const uuid = require("uuid/v4");
 const app = express();
 app.use(express.json());

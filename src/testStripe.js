@@ -14,8 +14,9 @@ const TestStripe = () => {
               });
             
               async function handleToken(token, addresses) {
+                // console.log(token,address)
                 const response = await axios.post(
-                        "http://localhost:5000/app",
+                        "http://localhost:3000/checkout",
                 //   "https://ry7v05l6on.sse.codesandbox.io/checkout",
                   { token, product }
                 );
@@ -36,7 +37,7 @@ const TestStripe = () => {
                     
                   </div>
                   <StripeCheckout
-                    stripeKey="pk_test_4TbuO6qAW2XPuce1Q6ywrGP200NrDZ2233"
+                    stripeKey="pk_test_51H73o1DdNi861xSpjAOt3cYsuvw8NxrKiOQ4cCHMU6qoCbkAJ9YcoQsN6rMc6EvL364r7NaQQSeGpFyusGCgVaHc00T8nI9B43"
                     token={handleToken}
                     amount={product.price * 100}
                     name="Monthly Subcription"

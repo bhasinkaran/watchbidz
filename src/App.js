@@ -14,6 +14,7 @@ import SignInSideBuyer from './Buyer/SignInSideBuyer'
 import HeaderBar from './Seller/HeaderBar';
 import BuyerHeaderBar from './Buyer/BuyerHeaderBar';
 import Inventory from './Buyer/Inventory';
+import AuctionPage from './Buyer/AuctionPage';
 
 function App() {
   function withSellerMenu(page){
@@ -38,11 +39,14 @@ function App() {
           <Route exact path='/seller/home' render={() => withSellerMenu(<Homepage />)} />
           <Route exact path='/seller/listwatch' render={() => <ListWatch />} />
 
+
          {/* Buyer Links */}
          <Route exact path='/buyer/signup' render={() => <SignUpBuyer />} />
           <Route exact path='/buyer/login' render={() => <SignInSideBuyer />} />
           <Route exact path='/buyer/home' render={() => withBuyerMenu(<BuyerHomepage />)} />
           <Route exact path='/buyer/inventory' render={() => withBuyerMenu(<Inventory />)} />
+          <Route exact path='/buyer/auction/:id' render={() => <AuctionPage />} />
+          
 
           {/* <Route exact path='/seller/listwatch' render={() => <ListWatch />} /> */}
 
