@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
         },
         titleBar: {
                 background:
-                        'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+                        'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0) 100%)',
         },
 }));
 
@@ -54,31 +54,57 @@ const useStyles = makeStyles((theme) => ({
 const ClosingSoon = () => {
         const someContext = useContext(AppState);
         const { buyers, user, listed} = someContext;
+        const [relevant, setRelevant] = useState([]);
+        const [redirect, setRedirect]=useState(false);
+        const [toLink, setToLink] = useState("");
+        useEffect(()=>{
+                setRelevant(Object.values(listed).filter(check=>checkShow(check)))
+        }, [listed,buyers,user]);
+
+        function checkShow(check){
+                console.log(buyers[user]['current']!="None")
+                console.log(buyers[user]['current']==="None" || !Object.values(buyers[user]['current']).includes(check.id))
+                console.log(buyers);
+                console.log(buyers[user]);
+                return check.active==true&&(buyers[user]['current']=="None"||!Object.values(buyers[user]['current']).includes(check.id))
+        }
 
         const classes = useStyles();
-        if (buyers[user] && buyers[user]['current'] && listed) {
+        if(redirect){
+                return <Redirect to={`/buyer/auction/${toLink}`}></Redirect>
+        }
+        else if (buyers && buyers[user] && buyers[user] && listed) {
                 return (
                         <div>
                         <div className={classes.root}>
-                                <GridList className={classes.gridList} cols={Math.min(Object.values(buyers[user]['current']).length,5)}>
+                                <GridList className={classes.gridList} cols={Math.min(relevant.length,5)}>
+                                {/* <GridList className={classes.gridList} cols={5}> */}
+
                                         {/* Object.values(sellers[user]['listed']).length */}
-                                        {Object.values(listed).filter(check=>check.active==true&&!Object.values(buyers[user]['current']).includes(check.id)).map((item) => (
-                                                <GridListTile key={listed[item].modelNo}>
-                                                        <img src={listed[item].photoTime} alt={listed[item].modelNo} />
+                                        {relevant.map((item) => (
+                                                // <Link to={`/buyer/auction/${item.id}`} >
+                                                <GridListTile key={listed[item.id].modelNo} onClick={()=>{
+                                                        setRedirect(true);
+                                                        setToLink(item.id);
+                                                }}  >
+                                                        <img src={listed[item.id].photoTime} alt={listed[item.id].modelNo} />
                                                         <GridListTileBar
-                                                                title={listed[item].modelNo}
+                                                                title={listed[item.id].modelNo}
                                                                 classes={{
                                                                         root: classes.titleBar,
                                                                         title: classes.title,
                                                                 }}
                                                                 actionIcon={
-                                                                        <IconButton aria-label={`star `}>
+                                                                        <IconButton aria-label={`star `} 
+                                                                        > 
+                                                                        {/* onClick={()=><Redirect to={`/buyer/auction/${item.id}`}></Redirect>} */}
                                                                                 {/* ${item.item}  */}
                                                                                 <StarBorderIcon className={classes.title} />
                                                                         </IconButton>
                                                                 }
                                                         />
                                                 </GridListTile>
+                                                // </Link>
                                         ))}
                                 </GridList>
                         </div>

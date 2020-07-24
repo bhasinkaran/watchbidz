@@ -56,11 +56,11 @@ const CurrentBids = () => {
         const { buyers, user, listed} = someContext;
 
         const classes = useStyles();
-        if (buyers[user] && buyers[user]['current'] && listed) {
+        if (buyers[user] && buyers[user]['current']!="None" && listed) {
                 return (
                         <div>
                         <div className={classes.root}>
-                                <GridList className={classes.gridList} cols={Math.min(Object.values(buyers[user]['listed']).length,5)}>
+                                <GridList className={classes.gridList} cols={Math.min(Object.values(buyers[user]['current']).length,5)}>
                                         {/* Object.values(sellers[user]['listed']).length */}
                                         {Object.values(buyers[user]['listed']).map((item) => (
                                                 <GridListTile key={listed[item].modelNo}>

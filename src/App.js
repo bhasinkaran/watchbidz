@@ -24,6 +24,7 @@ function App() {
     </div>);
   }
   function withBuyerMenu(page){
+    
     return(<div>
       <BuyerHeaderBar/>
       {page}
@@ -45,8 +46,8 @@ function App() {
           <Route exact path='/buyer/login' render={() => <SignInSideBuyer />} />
           <Route exact path='/buyer/home' render={() => withBuyerMenu(<BuyerHomepage />)} />
           <Route exact path='/buyer/inventory' render={() => withBuyerMenu(<Inventory />)} />
-          <Route exact path='/buyer/auction/:id' render={() => <AuctionPage />} />
-          
+          <Route exact path='/buyer/auction/:id' render={() => withBuyerMenu(<AuctionPage />)} />
+
 
           {/* <Route exact path='/seller/listwatch' render={() => <ListWatch />} /> */}
 
