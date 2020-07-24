@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
         },
         titleBar: {
                 background:
-                        'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 50%)',
+                        'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 30%)',
         },
 }));
 

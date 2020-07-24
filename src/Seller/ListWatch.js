@@ -62,6 +62,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ListWatch = () => {
+        let todaySeconds = Date.now();
+        console.log(todaySeconds);
+        todaySeconds+=259200000;
+        let livedate=new Date(todaySeconds);
+        console.log(livedate);
+        livedate.setUTCHours(13);
+
+        
 
         const someContext = useContext(AppState);
         const { user,showListed, setShowListed } = someContext;
