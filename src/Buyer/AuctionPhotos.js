@@ -53,15 +53,16 @@ const useStyles = makeStyles((theme) => ({
  */
 const AuctionPhotos = ({item}) => {
         const someContext = useContext(AppState);
-        const {  listed} = someContext;
+        const {  sellers} = someContext;
 
         const classes = useStyles();
         const types = ['photoTime', 'photoCrown', 'photoLatch']
         const typesWords = ['General', 'Crown', 'Latch']
 
-        
+        if(sellers)
                 return (
                         <div>
+                        <Header as='h3'>{sellers[item.lister]['firstName']}'s Photos</Header>
                         <div className={classes.root}>
                                 <GridList className={classes.gridList} cols={3}>
                                         {/* Object.values(sellers[user]['listed']).length */}
@@ -87,5 +88,8 @@ const AuctionPhotos = ({item}) => {
                         </div>
                         </div>
                 );
+        else{
+                return null
+        }
 }
 export default AuctionPhotos;

@@ -17,20 +17,9 @@ const AuctionPage = () => {
                         <Container>
                         <Segment centered compact color='purple'>
                                 <Header as='h1' textAlign='center'>{auctionItem.manufacturer} {auctionItem.modelNo}</Header>
+                                
                                 <AuctionPhotos item={auctionItem}/>
-                                <Grid  compact centered>
-                                        {/* <Grid.Column width="5">
-                                                <Grid.Row style={{marginTop:"25px"}} >
-                                                        <Image verticalAlign='center' size='massive' src={auctionItem.photoTime} />
-                                                </Grid.Row>
-                                                <Grid.Row style={{marginTop:"25px"}} >
-                                                        <Image verticalAlign='center' size='massive' src={auctionItem.photoLatch} />
-                                                </Grid.Row>
-                                                <Grid.Row style={{marginTop:"25px"}} >
-                                                        <Image verticalAlign='center' size='massive' src={auctionItem.photoCrown} />
-                                                </Grid.Row>
-                                                <Divider />
-                                        </Grid.Column> */}
+                                <Grid   centered>
                                         <Grid.Column width="16">
                                                 <Grid centered padded>
                                                         <Grid.Row>
@@ -38,7 +27,7 @@ const AuctionPage = () => {
                                                                 <Segment attached color='purple'>
                                                                       
                                                                         <Header as="h1">
-                                                                        Current highest bid: ${auctionItem.highestbid  ? auctionItem.highestbid : auctionItem.minimumAsk} 
+                                                                        Current Bid: ${auctionItem.highestbid  ? auctionItem.highestbid : auctionItem.minimumAsk} 
 
                                                                         </Header>
                                                                         <Header as="h3" textAlign='center'>
@@ -49,7 +38,6 @@ const AuctionPage = () => {
                                                                 <Segment attached color='purple'>
                                                                       <Header as='h4' floated='left' >
                                                                       Minimum Ask:  ${auctionItem.minimumAsk}
-                                                                        Current highest bid: 
                                                                       </Header>
 
                                                                 </Segment>
