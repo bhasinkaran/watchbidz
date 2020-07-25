@@ -7,7 +7,7 @@
 
 /src/firebase/*
 /src/firebase
-/src/stripeKey*
+/src/stripeKey.js
 
 # testing
 /coverage
