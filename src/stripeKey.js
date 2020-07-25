@@ -1,0 +1,2 @@
+const liveKey='pk_live_51H73o1DdNi861xSpdw6YVF0cbhRahIQKXkFddywbuHV428xHZvD975FRXUJUCSPiHTX18rE7JuNjDpGTaBdxzsKj00lkXwi3L6';
+export default liveKey;

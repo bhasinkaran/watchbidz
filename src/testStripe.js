@@ -4,19 +4,20 @@ import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import liveKey from './stripeKey'
 // import "./styles.css";
 
 const TestStripe = () => {
         const [product] = React.useState({
                 name: "WatchBidz",
-                price: 500.00,
+                price: 0.50,
                 description: "Please renew your WatchBidz monthly subscription"
               });
             
               async function handleToken(token, addresses) {
                 // console.log(token,address)
                 const response = await axios.post(
-                        "http://localhost:3000/checkout",
+                        "https://watchbidz-10820.firebaseapp.com/checkout",
                 //   "https://ry7v05l6on.sse.codesandbox.io/checkout",
                   { token, product }
                 );
@@ -37,14 +38,13 @@ const TestStripe = () => {
                     
                   </div>
                   <StripeCheckout
-                    stripeKey="pk_test_51H73o1DdNi861xSpjAOt3cYsuvw8NxrKiOQ4cCHMU6qoCbkAJ9YcoQsN6rMc6EvL364r7NaQQSeGpFyusGCgVaHc00T8nI9B43"
+                    stripeKey={liveKey}
                     token={handleToken}
                     amount={product.price * 100}
                     name="Monthly Subcription"
                     billingAddress
                     shippingAddress
                   />
-                  
                 </div>
               );
 
