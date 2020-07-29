@@ -8,11 +8,12 @@ import AuctionPhotos from './AuctionPhotos'
 import { dbListed } from '../firebase/firebase';
 const AuctionPage = () => {
         const { id } = useParams();
-        const { listed, sellers, } = React.useContext(AppState);
+        const { listed, sellers,user } = React.useContext(AppState);
         const [auctionItem, setItem] = useState("");
         const [bid, setBid] = useState("");
         const [confirmbid, setConfirmBid] = useState("");
         const [error, setError]=useState(false);
+        const[priceShowed, setPrice]=useState("");
         function updateBid() {
                 if(confirmbid!=bid){
                         setError(true);
@@ -25,14 +26,39 @@ const AuctionPage = () => {
                 }
                 else{
                         setError(false);
-                        dbListed.child(id).child('highestbid').set(confirmbid);
+                        dbListed.child(id).child('highestbid').set(Number(confirmbid));
+                        dbListed.child(id).child('bidder').set(user);
+
                 }
                 setConfirmBid("");
                 setBid("");
         }
         useEffect(() => {
                 setItem(listed[id])
+                if(listed && listed[id]){
+                        if(listed[id]['highestbid']){
+                                // var format = new Intl.NumberFormat('en-IN', { 
+                                //         style: 'currency', 
+                                //         currency: 'INR' 
+                                //     }).format(100); 
+                                setPrice((Number(listed[id]['highestbid'])).toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' })); 
+                                // console.log
+                        }       
+                        else{
+                                // var format=new Intl.NumberFormat('en-INR', { 
+                                //         style: 'currency', 
+                                //         currency: 'INR', 
+                                //         minimumFractionDigits: 2, 
+                                //     })
+                        //        setPrice(format.format(listed[id]['minimumask'])+" - Minimum Ask")
+                        console.log(Number(listed[id]['minimumAsk']).toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' }))
+                        setPrice(Number(listed[id]['minimumAsk']).toLocaleString('en-US', { style: 'currency', currency: 'USD' })+" - Minimum Ask"); 
 
+                        }
+
+        
+                }
+                
         }, [listed]);
         if (auctionItem) {
                 return (
@@ -46,7 +72,7 @@ const AuctionPage = () => {
                                                                 <Grid.Row>
                                                                         <Segment attached color='purple'>
                                                                                 <Header as="h1">
-                                                                                        Current Bid: ${auctionItem.highestbid ? auctionItem.highestbid : auctionItem.minimumAsk + " (Minimum Ask)"}
+                                                                                        Current Bid: {priceShowed}
                                                                                 </Header>
                                                                                 <Header as="h3" textAlign='center'>
                                                                                         {sellers[auctionItem.lister]['firstName']} {auctionItem.boxBool ? "has" : "doesn't have"} papers from {auctionItem.manufacturer} for this purchase.
