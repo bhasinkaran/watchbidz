@@ -5,6 +5,7 @@ import { AppState } from '../context';
 
 
 import AuctionPhotos from './AuctionPhotos'
+import { dbListed } from '../firebase/firebase';
 const AuctionPage = () => {
         const { id } = useParams();
         const { listed, sellers, } = React.useContext(AppState);
@@ -13,7 +14,21 @@ const AuctionPage = () => {
         const [confirmbid, setConfirmBid] = useState("");
         const [error, setError]=useState(false);
         function updateBid() {
+                if(confirmbid!=bid){
+                        setError(true);
+                        console.log("not match")
+                }
+                if(Number(bid)<Number(auctionItem.highestbid)||Number(bid)<Number(auctionItem.minimumAsk)){
+                        setError(true)
+                        console.log("too low")
 
+                }
+                else{
+                        setError(false);
+                        dbListed.child(id).child('highestbid').set(confirmbid);
+                }
+                setConfirmBid("");
+                setBid("");
         }
         useEffect(() => {
                 setItem(listed[id])
@@ -24,39 +39,33 @@ const AuctionPage = () => {
                         <Container>
                                 <Segment centered compact color='purple'>
                                         <Header as='h1' textAlign='center'>{auctionItem.manufacturer} {auctionItem.modelNo}</Header>
-
                                         <AuctionPhotos item={auctionItem} />
                                         <Grid centered>
                                                 <Grid.Column width="16">
                                                         <Grid centered padded>
                                                                 <Grid.Row>
-
                                                                         <Segment attached color='purple'>
-
                                                                                 <Header as="h1">
                                                                                         Current Bid: ${auctionItem.highestbid ? auctionItem.highestbid : auctionItem.minimumAsk + " (Minimum Ask)"}
-
                                                                                 </Header>
                                                                                 <Header as="h3" textAlign='center'>
                                                                                         {sellers[auctionItem.lister]['firstName']} {auctionItem.boxBool ? "has" : "doesn't have"} papers from {auctionItem.manufacturer} for this purchase.
                                                                         </Header>
-
                                                                         </Segment>
                                                                         <Segment attached color='purple'>
                                                                                 <Grid textAlign='center' padded>
-                                                                                        {/* style={{ height: '100vh' }}  */}
-
                                                                                         <Grid.Column style={{ maxWidth: 450 }}>
                                                                                                 <Header as='h2' color='teal' textAlign='center'>
-                                                                                                        BID NOW
+                                                                                                        Place Your Bid:
                                                                                                 </Header>
                                                                                                 <Form size='large' warning={error} >
                                                                                                         <Segment stacked>
-                                                                                                                <Form.Input icon='dollar sign' fluid required iconPosition='left' onChange={(e) => { setBid({ value: e.target.value }) }} placeholder='Your Bid' />
+                                                                                                                <Form.Input icon='dollar sign' fluid value={bid}  iconPosition='left' onChange={(e) => { setBid(e.target.value) }} placeholder='Your Bid' />
                                                                                                                 <Form.Input
-                                                                                                                        onChange={(e) => { setConfirmBid({ value: e.target.value }) }}
+                                                                                                                        onChange={(e) => { setConfirmBid(e.target.value) }}
                                                                                                                         fluid
-                                                                                                                        required
+                                                                                                                        value={confirmbid}
+                                                                                                                        
                                                                                                                         icon='lock'
                                                                                                                         iconPosition='left'
                                                                                                                         placeholder='Confirm Bid'
@@ -65,13 +74,13 @@ const AuctionPage = () => {
 
                                                                                                                 <Form.Button color='teal' fluid size='large' onClick={() => updateBid()}>
                                                                                                                         Confirm Bid
-</Form.Button>
+                                                                                                                </Form.Button>
                                                                                                         </Segment>
                                                                                                         <div style={{ maxWidth: 450 }}>
                                                                                                                 <Message
                                                                                                                         warning
                                                                                                                         floating
-                                                                                                                        content="Your username or password dones't match our records."
+                                                                                                                        content="Please make sure your bids match and that they are at least the minimum ask + higher than highest ask."
                                                                                                                         size="tiny"
                                                                                                                 />
                                                                                                         </div>
