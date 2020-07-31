@@ -81,7 +81,7 @@ const AuctionPage = () => {
                                                                         <Segment attached color='purple'>
                                                                                 <Grid textAlign='center' padded>
                                                                                         <Grid.Column style={{ maxWidth: 450 }}>
-                                                                                                <Header as='h2' color='teal' textAlign='center'>
+                                                                                                <Header as='h2' color='purple' textAlign='center'>
                                                                                                         Place Your Bid:
                                                                                                 </Header>
                                                                                                 <Form size='large' warning={error} >
@@ -98,7 +98,7 @@ const AuctionPage = () => {
                                                                                                                         type='password'
                                                                                                                 />
 
-                                                                                                                <Form.Button color='teal' fluid size='large' onClick={() => updateBid()}>
+                                                                                                                <Form.Button color='purple' fluid size='large' onClick={() => updateBid()}>
                                                                                                                         Confirm Bid
                                                                                                                 </Form.Button>
                                                                                                         </Segment>

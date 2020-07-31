@@ -63,10 +63,10 @@ const ClosingSoon = () => {
 
         function checkShow(check){
                 console.log(buyers[user]['current']!="None")
-                console.log(buyers[user]['current']==="None" || !Object.values(buyers[user]['current']).includes(check.id))
+                // console.log(buyers[user]['current']==="None" || !Object.values(buyers[user]['current']).includes(check.id))
                 console.log(buyers);
                 console.log(buyers[user]);
-                return check.active==true&&(buyers[user]['current']=="None"||!Object.values(buyers[user]['current']).includes(check.id))
+                return check.active==true&&buyers[user]['current']&&(buyers[user]['current']=="None"||!Object.values(buyers[user]['current']).includes(check.id))
         }
 
         const classes = useStyles();

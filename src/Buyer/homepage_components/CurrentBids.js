@@ -56,7 +56,7 @@ const CurrentBids = () => {
         const { buyers, user, listed} = someContext;
 
         const classes = useStyles();
-        if (buyers[user] && buyers[user]['current']!="None" && listed) {
+        if (buyers[user] &&buyers[user]['current']&& buyers[user]['current']!="None" && listed) {
                 return (
                         <div>
                         <div className={classes.root}>
