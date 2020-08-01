@@ -43,26 +43,7 @@ const Inventory = () => {
                 setRelevant(temp);
         }
 
-        const ReturnWatch = ({ id }) => {
-                var img = listed[id]['photoCrown'];
-                if (img) {
-                        //      console.log(imageurl);
-                        return (
-                                <Grid.Column key={id.toString()} mobile={8} tablet={4} computer={84} id={id}>
-                                        {/* <Link to={`/track/${[id]}`} > */}
-
-                                        <Image size='medium' rounded verticalAlign='middle' src={img} />
-
-                                        <Header textAlign='center' size='huge'>{listed[id]['modelNo']}</Header>
-                                        {/* </Link> */}
-                                        <br></br>
-                                </Grid.Column>);
-                }
-                else {
-                        // console.log(imageurl)
-                        return null;
-                }
-        }
+        
         const ReturnWatchCard = ({ id }) => {
                 var img = listed[id]['photoCrown'];
                 if (img) {
@@ -78,8 +59,8 @@ const Inventory = () => {
 
                                                         <Image size='medium' centered rounded verticalAlign='middle' src={img} />
                                                         <Card.Content>
-                                                                <Header textAlign='center'>{listed[id]['modelNo']}</Header>
-                                                                <Card.Meta>{listed[id]['minimumAsk']}</Card.Meta>
+                                                                <Header textAlign='center'>{listed[id]['manufacturer']} {listed[id]['modelNo']}</Header>
+                                                                <Card.Meta>Starting at ${listed[id]['minimumAsk']}</Card.Meta>
                                                         </Card.Content>
                                                         <Card.Content extra>
                                                                 {listed[id]['boxBool'] ? "Has " : "Does not have"} papers from  {listed[id]['manufacturer']}
@@ -124,7 +105,7 @@ const Inventory = () => {
                                                 </Grid.Column>
                                         </Grid.Row>
 
-                                        <Card.Group itemsPerRow={3}>
+                                        <Card.Group itemsPerRow={Math.min(relevant.length, 3)}>
                                                 {relevant.length > 0 ? relevant.map(id => <ReturnWatchCard key={id.toString()} id={id} />) : ""}
 
                                         </Card.Group>
@@ -137,3 +118,24 @@ const Inventory = () => {
 }
 
 export default Inventory;
+
+//  const ReturnWatch = ({ id }) => {
+//         var img = listed[id]['photoCrown'];
+//         if (img) {
+//                 //      console.log(imageurl);
+//                 return (
+//                         <Grid.Column key={id.toString()} mobile={8} tablet={4} computer={84} id={id}>
+//                                 {/* <Link to={`/track/${[id]}`} > */}
+
+//                                 <Image size='medium' rounded verticalAlign='middle' src={img} />
+
+//                                 <Header textAlign='center' size='huge'>{listed[id]['modelNo']}</Header>
+//                                 {/* </Link> */}
+//                                 <br></br>
+//                         </Grid.Column>);
+//         }
+//         else {
+//                 // console.log(imageurl)
+//                 return null;
+//         }
+// // }

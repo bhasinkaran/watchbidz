@@ -20,6 +20,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import { Redirect } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -89,6 +90,7 @@ const BuyerHeaderBar = ()=> {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [home, setRedirectHome]=React.useState(false);
 
   const handleDrawerOpen = () => {
         setTimeout(()=>setOpen(true), 10)    
@@ -99,6 +101,10 @@ const BuyerHeaderBar = ()=> {
         setTimeout(()=>setOpen(false), 10)    
   };
 
+  if(home){
+    // setRedirectHome(false);
+    return (<Redirect to={'/buyer/home'} push={true}/>);
+  }
   return (
     <div className={classes.root}>
       {/* <CssBaseline /> */}
@@ -145,11 +151,13 @@ const BuyerHeaderBar = ()=> {
         </div>
         <Divider />
         <List>
-            <ListItem button key={"Your Listings"}>
+            <ListItem button key={"Home"} onClick={()=>{
+              setRedirectHome(true);
+            }}>
               <ListItemIcon>
               <WatchIcon />
                 </ListItemIcon>
-              <ListItemText primary={"Your Listings"} />
+              <ListItemText primary={"Home"} />
             </ListItem>
             <ListItem button key={"Past Deals"}>
               <ListItemIcon><FormatListNumberedRtlSharpIcon /> </ListItemIcon>

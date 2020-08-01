@@ -77,8 +77,8 @@ const  SignUpBuyer = ()=> {
         businessLink: businessLink,
         businessName: businessName, 
         businessYelp: businessYelp,
-        memberIWJG: boolMember 
-
+        memberIWJG: boolMember ,
+        current: "None"
       })
       setUser(username);
     }
