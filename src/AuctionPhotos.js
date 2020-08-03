@@ -10,7 +10,7 @@ import Divider from '@material-ui/core/Divider'
 
 import { List } from '@material-ui/core';
 import { Link, Redirect } from 'react-router-dom'
-import { AppState } from '../context'
+import { AppState } from './context'
 
 const useStyles = makeStyles((theme) => ({
         root: {

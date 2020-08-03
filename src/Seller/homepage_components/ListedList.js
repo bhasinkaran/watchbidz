@@ -63,8 +63,12 @@ const ListedList = () => {
                                 <GridList className={classes.gridList} cols={Math.min(Object.values(sellers[user]['listed']).length,5)}>
                                         {/* Object.values(sellers[user]['listed']).length */}
                                         {Object.values(sellers[user]['listed']).map((item) => (
+                                               
+                                               
                                                 <GridListTile key={listed[item].modelNo}>
+                                                         <Link to={`/seller/auction/${item}`} push={true}>
                                                         <img src={listed[item].photoTime} alt={listed[item].modelNo} />
+                                                        </Link>
                                                         <GridListTileBar
                                                                 title={listed[item].modelNo}
                                                                 classes={{
@@ -79,6 +83,7 @@ const ListedList = () => {
                                                                 }
                                                         />
                                                 </GridListTile>
+                                                
                                         ))}
                                 </GridList>
                         </div>

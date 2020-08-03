@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { AppState } from '../context';
 
 
-import AuctionPhotos from './AuctionPhotos'
+import AuctionPhotos from '../AuctionPhotos'
 import { dbListed } from '../firebase/firebase';
 const AuctionPage = () => {
         const { id } = useParams();
@@ -64,7 +64,7 @@ const AuctionPage = () => {
                 return (
                         <Container>
                                 <Segment centered compact color='purple'>
-                                        <Header as='h1' textAlign='center'>{auctionItem.manufacturer} {auctionItem.modelNo}</Header>
+                                        <Header as='h1' textAlign='center'>{auctionItem.manufacturer} {auctionItem.modelNo} - purchased  {auctionItem.year}</Header>
                                         <AuctionPhotos item={auctionItem} />
                                         <Grid centered>
                                                 <Grid.Column width="16">

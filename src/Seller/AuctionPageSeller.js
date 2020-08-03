@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { AppState } from '../context';
 
 
-import AuctionPhotos from './AuctionPhotos'
+import AuctionPhotos from '../AuctionPhotos'
 import { dbListed } from '../firebase/firebase';
 const AuctionPageSeller = () => {
         const { id } = useParams();
@@ -35,7 +35,6 @@ const AuctionPageSeller = () => {
                         //        setPrice(format.format(listed[id]['minimumask'])+" - Minimum Ask")
                         //console.log(Number(listed[id]['minimumAsk']).toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' }))
                         setPrice(Number(listed[id]['minimumAsk']).toLocaleString('en-US', { style: 'currency', currency: 'USD' })+" - Minimum Ask"); 
-
                         }
 
         
@@ -46,7 +45,7 @@ const AuctionPageSeller = () => {
                 return (
                         <Container>
                                 <Segment centered compact color='purple'>
-                                        <Header as='h1' textAlign='center'>{auctionItem.manufacturer} {auctionItem.modelNo}</Header>
+                                        <Header as='h1' textAlign='center'>{auctionItem.manufacturer} {auctionItem.modelNo} - Purchased  {auctionItem.year}</Header>
                                         <AuctionPhotos item={auctionItem} />
                                         <Grid centered>
                                                 <Grid.Column width="16">
@@ -57,10 +56,10 @@ const AuctionPageSeller = () => {
                                                                                         Current Bid: {priceShowed}
                                                                                 </Header>
                                                                                 <Header as="h3" textAlign='center'>
-                                                                                        {sellers[auctionItem.lister]['firstName']} {auctionItem.boxBool ? "has" : "doesn't have"} papers from {auctionItem.manufacturer} for this purchase.
+                                                                                        You indicated that you {auctionItem.boxBool ? "have" : "do not have"} papers from {auctionItem.manufacturer} for this purchase.
                                                                                 </Header>
                                                                         </Segment>
-                                                                        <Segment attached color='purple'>
+                                                                        {/* <Segment attached color='purple'>
                                                                                 <Grid textAlign='center' padded>
                                                                                         <Grid.Column style={{ maxWidth: 450 }}>
                                                                                                 
@@ -68,7 +67,7 @@ const AuctionPageSeller = () => {
                                                                                 </Grid>
 
 
-                                                                        </Segment>
+                                                                        </Segment> */}
                                                                 </Grid.Row>
 
                                                         </Grid>

@@ -15,7 +15,7 @@ import HeaderBar from './Seller/HeaderBar';
 import BuyerHeaderBar from './Buyer/BuyerHeaderBar';
 import Inventory from './Buyer/Inventory';
 import AuctionPage from './Buyer/AuctionPage';
-
+import AuctionPageSeller from './Seller/AuctionPageSeller'
 function App() {
   function withSellerMenu(page){
     return(<div>
@@ -38,7 +38,8 @@ function App() {
           <Route exact path='/seller/signup' render={() => <SignUp />} />
           <Route exact path='/seller/login' render={() => <SignInSide />} />
           <Route exact path='/seller/home' render={() => withSellerMenu(<Homepage />)} />
-          <Route exact path='/seller/listwatch' render={() => <ListWatch />} />
+          <Route exact path='/seller/listwatch' render={() => withSellerMenu(<ListWatch />)} />
+          <Route exact path='/seller/auction/:id' render={() => withSellerMenu(<AuctionPageSeller />)} />
 
 
          {/* Buyer Links */}
