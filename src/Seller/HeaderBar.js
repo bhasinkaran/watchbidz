@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -20,7 +20,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-
+import {AppState} from '../context'
+import {Redirect} from 'react-router-dom'
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -89,16 +90,20 @@ const HeaderBar = ()=> {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-
+  const [home, setHome]=React.useState(false);
+  // const[change, setChanged]=React.useState(false);
   const handleDrawerOpen = () => {
-    setTimeout(()=>setOpen(true), 500)    
+    setOpen(true)    
   };
 
   const handleDrawerClose = () => {
-    setTimeout(()=>setOpen(false), 500)    
+    setTimeout(()=>setOpen(false), 300)    
   };
 
-  return (
+  // if(home){
+  //   return <Redirect to='/seller/home' push={true} />
+  // }
+    return (
     <div className={classes.root}>
       {/* <CssBaseline /> */}
       <AppBar
@@ -144,11 +149,11 @@ const HeaderBar = ()=> {
         </div>
         <Divider />
         <List>
-            <ListItem button key={"Your Listings"} onClick={()=>console.log('listings')} >
+            <ListItem button key={"Home"} onClick={()=>setHome(true)} >
               <ListItemIcon>
               <WatchIcon />
                 </ListItemIcon>
-              <ListItemText primary={"Your Listings"} />
+              <ListItemText primary={"Home"} />
             </ListItem>
             <ListItem button key={"Past Deals"}>
               <ListItemIcon><FormatListNumberedRtlSharpIcon /> </ListItemIcon>
@@ -158,28 +163,15 @@ const HeaderBar = ()=> {
               <ListItemIcon><MessageSharpIcon /></ListItemIcon>
               <ListItemText primary={"Message Center"} />
             </ListItem>
-          {/* {['Your Listings', 'Past Deals', 'Message Center'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))} */}
         </List>
         <Divider />
-        {/* <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List> */}
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-
       </main>
+      {home ? <Redirect to='/seller/home' push={true} /> :""}
     </div>
+
   );
 }
 export default HeaderBar;

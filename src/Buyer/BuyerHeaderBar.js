@@ -101,10 +101,10 @@ const BuyerHeaderBar = ()=> {
         setTimeout(()=>setOpen(false), 10)    
   };
 
-  if(home){
-    // setRedirectHome(false);
-    return (<Redirect to={'/buyer/home'} push={true}/>);
-  }
+  // if(home){
+  //   // setRedirectHome(false);
+  //   return (<Redirect to={'/buyer/home'} push={true}/>);
+  // }
   return (
     <div className={classes.root}>
       {/* <CssBaseline /> */}
@@ -188,6 +188,7 @@ const BuyerHeaderBar = ()=> {
         <div className={classes.toolbar} />
 
       </main>
+      {home ? <Redirect to={'/buyer/home'} push={true}/> : ""}
     </div>
   );
 }
