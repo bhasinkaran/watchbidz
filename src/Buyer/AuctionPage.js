@@ -7,6 +7,7 @@ import { AppState } from '../context';
 import AuctionPhotos from '../AuctionPhotos'
 import { dbListed } from '../firebase/firebase';
 import Countdown from 'react-countdown'
+import renderer from '../CountDownRenderer'
 const AuctionPage = () => {
         const { id } = useParams();
         const { listed, sellers,user } = React.useContext(AppState);
@@ -42,7 +43,7 @@ const AuctionPage = () => {
                                 //         style: 'currency', 
                                 //         currency: 'INR' 
                                 //     }).format(100); 
-                                setPrice((Number(listed[id]['highestbid'])).toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' })); 
+                                setPrice((Number(listed[id]['highestbid'])).toLocaleString('en-US', { style: 'currency', currency: 'USD' })); 
                                 // console.log
                         }       
                         else{
@@ -75,9 +76,9 @@ const AuctionPage = () => {
                                                                                 <Header as="h1">
                                                                                         Current Bid: {priceShowed}
                                                                                 </Header>
-                                                                                <Header as="h2">
-                                                                                <Countdown date={auctionItem.endDate} />
-                                                                                </Header>
+                                                                                {/* <Header as="h2"> */}
+                                                                                <Countdown  renderer={renderer} date={auctionItem.endDate} />
+                                                                                {/* </Header> */}
                                                                                 <Header as="h3" textAlign='center'>
                                                                                         {sellers[auctionItem.lister]['firstName']} {auctionItem.boxBool ? "has" : "doesn't have"} papers from {auctionItem.manufacturer} for this purchase.
                                                                         </Header>

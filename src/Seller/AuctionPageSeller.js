@@ -57,9 +57,9 @@ const AuctionPageSeller = () => {
                                                                                 <Header as="h1">
                                                                                         Current Bid: {priceShowed}
                                                                                 </Header>
-                                                                                <Header as="h2">
+                                                                                {/* <Header as="h2"> */}
                                                                                 <Countdown  renderer={renderer} date={auctionItem.endDate} />
-                                                                                </Header>
+                                                                                {/* </Header> */}
                                                                                 <Header as="h3" textAlign='center'>
                                                                                         You indicated that you {auctionItem.boxBool ? "have" : "do not have"} papers from {auctionItem.manufacturer} for this purchase.
                                                                                 </Header>

@@ -9,7 +9,7 @@ const renderer = ({ days,hours, minutes, seconds, completed }) => {
           // Render a countdown
         return (
         <div>
-                <Segment>
+                <Segment raised>
 
                 
                 <Header color='purple'>Live Countdown</Header>
