@@ -2,11 +2,13 @@ import React, { useState, useContext, useEffect } from 'react'
 import { Header, Form, Segment, Message, Container, Label, Button, Divider, Icon, Loader, Image, Grid, Item } from 'semantic-ui-react'
 import { useParams } from 'react-router-dom';
 import { AppState } from '../context';
-
+import Countdown from 'react-countdown';
 
 import AuctionPhotos from '../AuctionPhotos'
 import { dbListed } from '../firebase/firebase';
+import renderer from '../CountDownRenderer'
 const AuctionPageSeller = () => {
+        
         const { id } = useParams();
         const { listed, sellers,user } = React.useContext(AppState);
         const [auctionItem, setItem] = useState("");
@@ -54,6 +56,9 @@ const AuctionPageSeller = () => {
                                                                         <Segment attached color='purple'>
                                                                                 <Header as="h1">
                                                                                         Current Bid: {priceShowed}
+                                                                                </Header>
+                                                                                <Header as="h2">
+                                                                                <Countdown  renderer={renderer} date={auctionItem.endDate} />
                                                                                 </Header>
                                                                                 <Header as="h3" textAlign='center'>
                                                                                         You indicated that you {auctionItem.boxBool ? "have" : "do not have"} papers from {auctionItem.manufacturer} for this purchase.

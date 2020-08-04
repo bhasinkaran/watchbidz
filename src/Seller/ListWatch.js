@@ -64,10 +64,15 @@ const useStyles = makeStyles((theme) => ({
 const ListWatch = () => {
         let todaySeconds = Date.now();
         console.log(todaySeconds);
-        todaySeconds+=259200000;
+        todaySeconds+=518400000;
         let livedate=new Date(todaySeconds);
         console.log(livedate);
         livedate.setUTCHours(13);
+        livedate.setMinutes(30);
+        livedate.setSeconds(0);
+        console.log(livedate)
+        
+        // const timeEnd=livedate.getUTCMilliseconds();
 
         
 
@@ -116,7 +121,8 @@ const ListWatch = () => {
                         minimumAsk: minimumAsk,
                         lister: user,
                         active: false,
-                        "createdAt": {'.sv': 'timestamp'}
+                        "createdAt": {'.sv': 'timestamp'},
+                        "endDate": livedate.getTime()
                 })
                 const key = k.getKey();
                 console.log(key);
