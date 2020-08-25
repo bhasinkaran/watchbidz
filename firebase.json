@@ -17,7 +17,7 @@
     ],
     "rewrites": [
       {	
-        "source": "/app",	
+        "source": "/timestamp",	
         "function": "app"	
       },	
       {	

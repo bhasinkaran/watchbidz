@@ -10,6 +10,7 @@ app.use(cors());
 app.get('/timestamp', (req, res)=>{
         res.send(`${Date.now()}`);
 })
+
 app.post("/checkout", async (req, res) => {
         console.log("Request:", req.body);
       

@@ -1,5 +1,5 @@
 import React, { useEffect, createContext, useState } from 'react';
-import { dbSellers ,dbPrevious, dbListed, dbBuyers} from './firebase/firebase'
+import { dbSellers ,dbPrevious, dbListed, dbBuyers, dbAdmins} from './firebase/firebase'
 
 const AppState = createContext(null);
 const { Provider } = AppState;
@@ -13,12 +13,20 @@ const StateProvider = ({ children }) => {
         const [buyers, setBuyers]=useState("");
         const [showListed, setShowListed]=useState(false);
         const [active, setActive]=useState("Home");
+        const [admins, setAdmins]=useState("");
         useEffect(() => {
                 const handleData = snap => {
                         if (snap.val()) setSellers(snap.val());
                 }
                 dbSellers.on('value', handleData, error => alert(error));
                 return () => { dbSellers.off('value', handleData); };
+        }, []);
+        useEffect(() => {
+                const handleData = snap => {
+                        if (snap.val()) setAdmins(snap.val());
+                }
+                dbAdmins.on('value', handleData, error => alert(error));
+                return () => { dbAdmins.off('value', handleData); };
         }, []);
         useEffect(() => {
                 const handleData = snap => {
