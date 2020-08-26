@@ -16,6 +16,9 @@ import BuyerHeaderBar from './Buyer/BuyerHeaderBar';
 import Inventory from './Buyer/Inventory';
 import AuctionPage from './Buyer/AuctionPage';
 import AuctionPageSeller from './Seller/AuctionPageSeller'
+import SignInSideAdmin from './Admin/AdminLogin'
+import AdminHomepage from './Admin/AdminHomepage'
+import AdminHeaderBar from './Admin/AdminHeaderBar'
 function App() {
   function withSellerMenu(page){
     return(<div>
@@ -27,6 +30,13 @@ function App() {
     
     return(<div>
       <BuyerHeaderBar/>
+      {page}
+    </div>);
+  }
+  function withAdminMenu(page){
+    
+    return(<div>
+      <AdminHeaderBar/>
       {page}
     </div>);
   }
@@ -51,6 +61,9 @@ function App() {
 
 
           {/* <Route exact path='/seller/listwatch' render={() => <ListWatch />} /> */}
+        {/* ADMIN Links */}
+        <Route exact path='/admin/login' render={() => <SignInSideAdmin />} />
+        <Route exact path='/admin/home' render={() => withAdminMenu(<AdminHomepage />)} />
 
           <Route exact path='/' render={() => <TestStripe />} />
         </BrowserRouter>

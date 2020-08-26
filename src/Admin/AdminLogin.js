@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
         },
 }));
 
-export default function SignInSide() {
+export default function SignInSideAdmin() {
         const [error, setError] = useState(false);
         const [pass, setPass] = useState("");
         const [username, setUsername] = useState("");
