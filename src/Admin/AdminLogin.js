@@ -68,8 +68,9 @@ export default function SignInSideAdmin() {
         const {user, setUser, setLogged, admins} = someContext;
         const [redirect, setRedirect]=useState(false);
         function CheckPass() {
-                console.log(username)
-                console.log(pass)
+                console.log(username);
+                console.log(pass);
+                console.log(admins);
                 if (admins[username]) {
                   if (admins[username]["password"] === pass) {
                     setUser(username);
