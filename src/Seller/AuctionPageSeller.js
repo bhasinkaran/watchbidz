@@ -5,7 +5,7 @@ import { AppState } from '../context';
 import Countdown from 'react-countdown';
 
 import AuctionPhotos from '../AuctionPhotos'
-import { dbListed } from '../firebase/firebase';
+import { dbListed, dbSellers } from '../firebase/firebase';
 import renderer from '../CountDownRenderer'
 const AuctionPageSeller = ({ access }) => {
 
@@ -50,7 +50,28 @@ const AuctionPageSeller = ({ access }) => {
                                         <Header as='h1' textAlign='center'>{auctionItem.manufacturer} {auctionItem.modelNo} - Purchased  {auctionItem.year}</Header>
                                         {access == "Admin" ?
                                                 <div>
-                                                        Approve
+                                                        <Button fluid primary onClick={() => {
+                                                                let todaySeconds = Date.now();
+                                                                console.log(todaySeconds);
+                                                                todaySeconds += 259200000; 
+                                                                // increment to be after 3 days.
+                                                                let livedate = new Date(todaySeconds);
+                                                                console.log(livedate);
+                                                                // livedate.setUTCHours(13);
+                                                                // livedate.setMinutes(30);
+                                                                // livedate.setSeconds(0);
+                                                                var endDate = livedate.getTime();
+                                                                dbListed.child(id).child("active").set(!listed[id]['active'])
+                                                                if(!listed[id]['active']){
+                                                                        dbListed.child(id).child("endDate").set(endDate);
+                                                                }
+                                                                
+                                                        }
+
+                                                        }>
+                                                                {listed[id]['active'] ? "Unlist" : "List"}
+                                                        </Button>
+                                                        <Divider></Divider>
                                                 </div>
                                                 : ""}
                                         <AuctionPhotos item={auctionItem} />
