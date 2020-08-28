@@ -60,7 +60,7 @@ const  SignUp = ()=> {
   const[username, setUsername]=useState("");
   // const [redirect, setRedirect]= useState("");
 
-  function writeFirebase(){
+  function writeFirebase(){ 
     if(!sellers[username]){
       dbSellers.child(username).set({
         email: email,
