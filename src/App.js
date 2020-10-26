@@ -19,6 +19,8 @@ import AuctionPageSeller from './Seller/AuctionPageSeller'
 import SignInSideAdmin from './Admin/AdminLogin'
 import AdminHomepage from './Admin/AdminHomepage'
 import AdminHeaderBar from './Admin/AdminHeaderBar'
+import Home from './LandingPage';
+import SellerLandingPage from './SellerLandingPage';
 function App() {
   function withSellerMenu(page){
     return(<div>
@@ -44,6 +46,10 @@ function App() {
     <StateProvider >
       <div className="App">
         <BrowserRouter>
+        <Route exact path='/' render={() => <Home />} />
+        <Route exact path='/seller/homepage' render={() => <SellerLandingPage />} />
+        {/* <Route exact path='/buyer/homepage' render={() => <BuyerLandingPage />} /> */}
+
         {/* Seller Links */}
           <Route exact path='/seller/signup' render={() => <SignUp />} />
           <Route exact path='/seller/login' render={() => <SignInSide />} />
@@ -66,7 +72,7 @@ function App() {
         <Route exact path='/admin/home' render={() => withAdminMenu(<AdminHomepage />)} />
         <Route exact path='/admin/auction/:id' render={() => withSellerMenu(<AuctionPageSeller access={"Admin"} />)} />
 
-          <Route exact path='/' render={() => <TestStripe />} />
+          {/* <Route exact path='/' render={() => <TestStripe />} /> */}
         </BrowserRouter>
       </div>
     </StateProvider>

@@ -29,6 +29,7 @@ const AuctionPage = () => {
                 else{
                         setError(false);
                         dbListed.child(id).child('highestbid').set(Number(confirmbid));
+                        dbListed.child(id).child('bids').push({"id":user,"amount":Number(confirmbid)});
                         dbListed.child(id).child('bidder').set(user);
 
                 }
