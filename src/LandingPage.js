@@ -114,12 +114,16 @@ class DesktopContainer extends Component {
           onBottomPassed={this.showFixedMenu}
           onBottomPassedReverse={this.hideFixedMenu}
         >
+          <div style={{'background-image': "url('img_girl.jpg')"}}>
+          </div>
           <Segment
             inverted
             textAlign='center'
             style={{ minHeight: 700, padding: '1em 0em' }}
             vertical
+            
           >
+            {/* <Image src='/landingpage.png' fluid /> */}
             <Menu
               fixed={fixed ? 'top' : null}
               inverted={!fixed}

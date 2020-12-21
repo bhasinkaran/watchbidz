@@ -21,6 +21,9 @@ import AdminHomepage from './Admin/AdminHomepage'
 import AdminHeaderBar from './Admin/AdminHeaderBar'
 import Home from './LandingPage';
 import SellerLandingPage from './SellerLandingPage';
+import BuyerLandingPage  from './Buyer/BuyerLandingPage'
+import FinalLandingPage from './FinalLandingPage'
+
 function App() {
   function withSellerMenu(page){
     return(<div>
@@ -46,9 +49,9 @@ function App() {
     <StateProvider >
       <div className="App">
         <BrowserRouter>
-        <Route exact path='/' render={() => <Home />} />
+        <Route exact path='/' render={() => <FinalLandingPage />} />
         <Route exact path='/seller/homepage' render={() => <SellerLandingPage />} />
-        {/* <Route exact path='/buyer/homepage' render={() => <BuyerLandingPage />} /> */}
+        <Route exact path='/buyer/homepage' render={() => <BuyerLandingPage />} />
 
         {/* Seller Links */}
           <Route exact path='/seller/signup' render={() => <SignUp />} />

@@ -9,6 +9,7 @@ import {Container} from 'semantic-ui-react'
 import PreviousBids from "./homepage_components/PreviousBids";
 import CurrentBids from "./homepage_components/CurrentBids";
 import ClosingSoon from "./homepage_components/ClosingSoon";
+import RecentlySold from "./homepage_components/RecentlySold";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -61,8 +62,6 @@ const BuyerHomepage = () => {
                                 <CurrentBids />
                         </Grid>
                 </Grid>
-                
-                
 
                 <Grid container
                         direction="row"
@@ -89,6 +88,34 @@ const BuyerHomepage = () => {
                         >
                         <Grid item xs={5}>
                                 <ClosingSoon />
+                                {/* <PreviousBids /> */}
+                        </Grid>
+                </Grid>
+                <Grid container
+                        direction="row"
+                        justify="center"
+                        alignItems="baseline"
+                        margin 
+                        style={{marginTop:"20px",
+                                marginLeft:"10px"}}
+                        >
+                        <Grid item xs={5}>
+                                <Typography variant="h4" gutterBottom >
+                                        Recently Closed Deals - Hot Watches
+                                </Typography>
+                        </Grid>
+                </Grid>
+
+                <Grid container
+                        direction="row"
+                        justify="center"
+                        alignItems="baseline"
+                        margin
+                        style={{marginLeft:"10px"}}
+
+                        >
+                        <Grid item xs={5}>
+                                <RecentlySold />
                                 {/* <PreviousBids /> */}
                         </Grid>
                 </Grid>

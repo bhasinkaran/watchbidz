@@ -121,7 +121,7 @@ const ClosingSoon = () => {
               if(user) {
                 return (
                         <div>
-                                <Header>Currently, </Header>
+                                <Header>ADD BIDS THAT ARE CLOSING SOON </Header>
                                 
                                 <Divider hidden/>
                                 <Divider />

@@ -50,7 +50,7 @@ return (<div>
         marginTop: mobile ? '1.5em' : '3em',
       }}
     />
-    
+    <Divider hidden></Divider>
     <Button primary size='huge' as={Link} to={'/seller/login'}>
       Get Started
       <Icon name='right arrow' />
@@ -248,14 +248,14 @@ contact info for the winning dealer and you can coordinate the rest of the trans
            How It Works
             </Header>
             <p style={{ fontSize: '1.33em' }}>
-            1. Upload 3 photos of your watch (whole piece, dial, and strap/bracelet)
+            Upload 3 photos of your watch (whole piece, dial, and strap/bracelet)
              
              </p>
              <p style={{ fontSize: '1.33em' }}>
-             2. Fill out all necessary watch details, including model number             
+             Fill out all necessary watch details, including model number             
              </p>
              <p style={{ fontSize: '1.33em' }}>
-             3. Hit ‘submit!’
+             Hit ‘submit!’ and, once approved, you can see the latest bids!
              </p>
           </Grid.Column>
         </Grid.Row>
@@ -264,7 +264,7 @@ contact info for the winning dealer and you can coordinate the rest of the trans
       </Grid>
     </Segment>
    
-    <Segment style={{ padding: '4em 0em' }} vertical>
+    {/* <Segment style={{ padding: '4em 0em' }} vertical>
       <Grid container >
        
       </Grid>
@@ -273,7 +273,7 @@ contact info for the winning dealer and you can coordinate the rest of the trans
       <Grid container >
         
       </Grid>
-    </Segment>
+    </Segment> */}
     
   </ResponsiveContainer>
 )
