@@ -46,7 +46,7 @@ const Header = ()=> {
                 setChecked(true);
         },[]);
         return(
-                <div className={classes.root}>
+                <div className={classes.root} id="header">
                         <AppBar className={classes.appbar} elevation={0}>
                                 <Toolbar className={classes.appbarWrapper}>
                                 <h1 className={classes.appbarTitle}> WatchBidz. </h1>
