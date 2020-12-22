@@ -3,6 +3,7 @@ import {makeStyles} from '@material-ui/core/styles'
 import { CssBaseline, AppBar, IconButton, Toolbar, Collapse } from '@material-ui/core';
 import SortIcon from '@material-ui/icons/Sort'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { Link as Scroll } from 'react-scroll'
 
 const useStyles=makeStyles((theme)=>({
         appbar:{
@@ -62,9 +63,12 @@ const Header = ()=> {
                                 <h1 className={classes.title}>
                                         Welcome to <br></br> WatchBidz
                                 </h1>
-                                <IconButton>
-                                        <ExpandMoreIcon className={classes.goDown}></ExpandMoreIcon>
-                                </IconButton>
+                                <Scroll to='user-roles' smooth={true}>
+                                        {/*  */}
+                                        <IconButton>
+                                                <ExpandMoreIcon className={classes.goDown}></ExpandMoreIcon>
+                                        </IconButton>
+                                </Scroll>
                         </div>
                         </Collapse>
                 </div>

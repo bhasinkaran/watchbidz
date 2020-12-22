@@ -13,7 +13,9 @@ const useStyles = makeStyles({
   root: {
     maxWidth: 545,
     background:'rgba(0,0,0,.5)',
-    margin: '25px'
+    margin: '25px',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   media: {
     height: 340,
@@ -29,6 +31,9 @@ const useStyles = makeStyles({
         fontFamily:'Nunito',
         color:'#ddd'       
         },
+  button:{
+          
+  }
 });
 
 export default function ImageCard({role, checked}) {
@@ -53,7 +58,7 @@ export default function ImageCard({role, checked}) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        <Button className={classes.button} variant = 'contained' size="large" color="black">
           Sign Up
         </Button>
         {/* <Button size="small" color="primary">

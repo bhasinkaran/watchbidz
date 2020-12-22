@@ -9,17 +9,25 @@ const useStyles= makeStyles((theme)=>({
                 minHeight: '100vh',
                 display: 'flex',
                 justifyContent: 'center',
-                // alignItems: 'center'
+                alignItems: 'center',
+                [theme.breakpoints.down('md')]: {
+                        flexDirection:"column"
+                }
         }
 }));
 const UserCard= ()=>{
         const classes=useStyles();
         const checked=useWindowPosition("header");
         return(
+                <div>
+                <div id='user-roles'>
 
-        <div className={classes.root}>
+                </div>
+                <br />
+        <div className={classes.root} >
                 <ImageCard role={roles[0]} checked={checked}/>
                 <ImageCard role={roles[1]} checked={checked}/>
+        </div>
         </div>
         );
 }
