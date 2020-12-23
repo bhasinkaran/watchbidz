@@ -7,9 +7,9 @@ const roles = [
         },
         {
                 title:"Seller",
-                description: `We want to make the watch selling process as simple as possible for you, and also get you maximum
+                description: `We make the watch selling process as simple as possible for you while getting you maximum
                 market value. Once you list your watch, only authorized dealers who have been vetted by Watchbidz
-                will have three days to submit bids on your listing.`,
+                will have three days to submit bids.`,
                 url: process.env.PUBLIC_URL+ `/seller.jpg`
         }
 ]

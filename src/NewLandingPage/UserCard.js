@@ -19,12 +19,12 @@ const UserCard= ()=>{
         const classes=useStyles();
         const checked=useWindowPosition("header");
         return(
-                <div>
-                <div id='user-roles'>
+         <div id='user-roles'>
+                {/* // <div id='user-roles'>
 
-                </div>
-                <br />
-        <div className={classes.root} >
+                // </div>
+                // <br /> */}
+        <div  className={classes.root} >
                 <ImageCard role={roles[0]} checked={checked}/>
                 <ImageCard role={roles[1]} checked={checked}/>
         </div>

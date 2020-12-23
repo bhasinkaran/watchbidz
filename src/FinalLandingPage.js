@@ -3,6 +3,7 @@ import {makeStyles} from '@material-ui/core/styles'
 import { CssBaseline } from '@material-ui/core';
 import Header from './NewLandingPage/Header'
 import UserCard from './NewLandingPage/UserCard'
+import Philosophy from './NewLandingPage/Philosophy';
 const useStyles=makeStyles((theme)=>({
         root:{
                 minHeight: '200vh',
@@ -17,6 +18,7 @@ const FinalLandingPage = ()=> {
                 <div className={classes.root}>
                          <CssBaseline />
                          <Header />
+                         <Philosophy />
                          <UserCard />
                 </div>
         )

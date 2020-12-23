@@ -33,6 +33,10 @@ const useStyles = makeStyles({
         },
   button:{
           
+  },
+  actionArea:{
+          alignItems: 'center',
+          justifyContent:'center'
   }
 });
 
@@ -57,7 +61,7 @@ export default function ImageCard({role, checked}) {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
+      <CardActions className={classes.actionArea}>
         <Button className={classes.button} variant = 'contained' size="large" color="black">
           Sign Up
         </Button>
