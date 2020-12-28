@@ -50,7 +50,7 @@ const StateProvider = ({ children }) => {
                 return () => { dbBuyers.off('value', handleData); };
         }, []);
 
-        const api = { sellers, user, admins, setShowListed, showListed, setUser, listed, buyers, active, setActive };
+        const api = { sellers, user, admins, setShowListed, showListed, setUser, listed, buyers, active, setActive,previous };
         return <Provider value={api}>{children}</Provider>;
 };
 
