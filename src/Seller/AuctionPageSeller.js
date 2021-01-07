@@ -60,11 +60,16 @@ const AuctionPageSeller = ({ access }) => {
                                                                 // livedate.setUTCHours(13);
                                                                 // livedate.setMinutes(30);
                                                                 // livedate.setSeconds(0);
-                                                                var endDate = livedate.getTime();
-                                                                dbListed.child(id).child("active").set(!listed[id]['active'])
+                                                                var endDate = livedate.getTime()
+                                                                console.log(livedate)
+                                                                console.log(livedate)
+                                                                console.log(todaySeconds)
+                                                                console.log(endDate)
                                                                 if(!listed[id]['active']){
                                                                         dbListed.child(id).child("endDate").set(endDate);
                                                                 }
+                                                                dbListed.child(id).child("active").set(!listed[id]['active'])
+
                                                                 
                                                         }
 
@@ -84,7 +89,7 @@ const AuctionPageSeller = ({ access }) => {
                                                                                         Current Bid: {priceShowed}
                                                                                 </Header>
                                                                                 {/* <Header as="h2"> */}
-                                                                                <Countdown renderer={renderer} date={auctionItem.endDate} />
+                                                                                {}<Countdown renderer={renderer} date={auctionItem.endDate} />
                                                                                 {/* </Header> */}
                                                                                 <Header as="h3" textAlign='center'>
                                                                                         You indicated that you {auctionItem.boxBool ? "have" : "do not have"} papers from {auctionItem.manufacturer} for this purchase.

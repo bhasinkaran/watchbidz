@@ -73,7 +73,7 @@ function App() {
         {/* ADMIN Links */}
         <Route exact path='/admin/login' render={() => <SignInSideAdmin />} />
         <Route exact path='/admin/home' render={() => withAdminMenu(<AdminHomepage />)} />
-        <Route exact path='/admin/auction/:id' render={() => withSellerMenu(<AuctionPageSeller access={"Admin"} />)} />
+        <Route exact path='/admin/auction/:id' render={() => withAdminMenu(<AuctionPageSeller access={"Admin"} />)} />
 
           {/* <Route exact path='/' render={() => <TestStripe />} /> */}
         </BrowserRouter>
