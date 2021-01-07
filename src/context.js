@@ -1,5 +1,5 @@
 import React, { useEffect, createContext, useState } from 'react';
-import { dbSellers ,dbPrevious, dbListed, dbBuyers, dbAdmins} from './firebase/firebase'
+import { dbSellers ,dbPrevious, dbListed, dbBuyers, dbAdmins, dbIncompleteDeals, dbRecentlyClosed} from './firebase/firebase'
 
 const AppState = createContext(null);
 const { Provider } = AppState;
@@ -14,6 +14,9 @@ const StateProvider = ({ children }) => {
         const [showListed, setShowListed]=useState(false);
         const [active, setActive]=useState("Home");
         const [admins, setAdmins]=useState("");
+        const [recentlyclosed, setRecentlyClosed]=useState("");
+        const [incompletedeals, setIncompleteDeals]=useState("");
+
         useEffect(() => {
                 const handleData = snap => {
                         if (snap.val()) setSellers(snap.val());
@@ -48,6 +51,20 @@ const StateProvider = ({ children }) => {
                 }
                 dbBuyers.on('value', handleData, error => alert(error));
                 return () => { dbBuyers.off('value', handleData); };
+        }, []);
+        useEffect(() => {
+                const handleData = snap => {
+                        if (snap.val()) setIncompleteDeals(snap.val());
+                }
+                dbIncompleteDeals.on('value', handleData, error => alert(error));
+                return () => { dbIncompleteDeals.off('value', handleData); };
+        }, []);
+        useEffect(() => {
+                const handleData = snap => {
+                        if (snap.val()) setRecentlyClosed(snap.val());
+                }
+                dbRecentlyClosed.on('value', handleData, error => alert(error));
+                return () => { dbRecentlyClosed.off('value', handleData); };
         }, []);
 
         const api = { sellers, user, admins, setShowListed, showListed, setUser, listed, buyers, active, setActive,previous };

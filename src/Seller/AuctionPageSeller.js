@@ -5,7 +5,7 @@ import { AppState } from '../context';
 import Countdown from 'react-countdown';
 
 import AuctionPhotos from '../AuctionPhotos'
-import { dbListed, dbSellers } from '../firebase/firebase';
+import { dbListed, dbSellers, dbRecentlyClosed, dbIncompleteDeals } from '../firebase/firebase';
 import renderer from '../CountDownRenderer'
 const AuctionPageSeller = ({ access }) => {
 
@@ -76,6 +76,59 @@ const AuctionPageSeller = ({ access }) => {
                                                         }>
                                                                 {listed[id]['active'] ? "Unlist" : "List"}
                                                         </Button>
+                                                        { listed[id]['endDate'] < Date.now() ?  
+                                                                <Button fluid primary onClick={() => {
+                                                                        
+                                                                        dbListed.child(id).child("active").set(!listed[id]['active'])
+
+                                                                        if(listed[id]['highestbid'])
+                                                                        {
+                                                                                const k = dbRecentlyClosed.push({
+                                                                                        modelNo: listed[id]['modelNo'],
+                                                                                        manufacturer: listed[id]['manufacturer'],
+                                                                                        year: listed[id]['year'],
+                                                                                        boxBool: listed[id]['boxBool'],
+                                                                                        finalbid: listed[id]['highestbid'],
+                                                                                        bidder: listed[id]['bidder'],
+                                                                                        lister: listed[id]['lister'],
+                                                                                        "createdAt": {'.sv': 'timestamp'},
+                                                                                })
+                                                                                const key = k.getKey();
+                                                                                console.log(key);
+                                                                                dbSellers.child(listed[id]['lister']).child('pastdeals').push(key);
+                                                                                dbRecentlyClosed.child(key).child('id').set(key);
+                                                                        }
+                                                                        else{
+                                                                                dbIncompleteDeals.push({
+                                                                                        modelNo: listed[id]['modelNo'],
+                                                                                        manufacturer: listed[id]['manufacturer'],
+                                                                                        year: listed[id]['year'],
+                                                                                        boxBool: listed[id]['boxBool'],
+                                                                                        lister: listed[id]['lister'],
+                                                                                        minimumAsk: listed[id]['minimumAsk'],
+                                                                                        "createdAt": {'.sv': 'timestamp'},
+                                                                                
+                                                                                
+                                                                                })
+                                                                        }
+
+                                                                        let arr1=Object.keys(sellers[listed[id]['lister']]['listed'])
+                                                                        let arr2=Object.values(sellers[listed[id]['lister']]['listed'])
+                                                                        console.log(arr1)
+                                                                        console.log(arr2)
+                                                                        for(let i=0;i<arr1.length;i+=1){
+                                                                                if(sellers[listed[id]['lister']]['listed'][arr1[i]]==id){
+                                                                                        dbSellers.child(listed[id]['lister']).child('listed').child(arr1[i]).remove()
+                                                                                }
+                                                                        }
+                                                                        dbListed.child(id).remove()
+                                                                        
+                                                                        }
+
+                                                                        }>
+                                                                                MARK AS COMPLETE
+                                                                        </Button>  
+                                                        : ""}
                                                         <Divider></Divider>
                                                 </div>
                                                 : ""}
