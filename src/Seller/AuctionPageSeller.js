@@ -99,7 +99,7 @@ const AuctionPageSeller = ({ access }) => {
                                                                                 dbRecentlyClosed.child(key).child('id').set(key);
                                                                         }
                                                                         else{
-                                                                                dbIncompleteDeals.push({
+                                                                                const k =  dbIncompleteDeals.push({
                                                                                         modelNo: listed[id]['modelNo'],
                                                                                         manufacturer: listed[id]['manufacturer'],
                                                                                         year: listed[id]['year'],
@@ -110,6 +110,9 @@ const AuctionPageSeller = ({ access }) => {
                                                                                 
                                                                                 
                                                                                 })
+                                                                                const key = k.getKey();
+                                                                                dbSellers.child(listed[id]['lister']).child('incompletedeals').push(key);
+
                                                                         }
 
                                                                         let arr1=Object.keys(sellers[listed[id]['lister']]['listed'])
@@ -122,8 +125,10 @@ const AuctionPageSeller = ({ access }) => {
                                                                                 }
                                                                         }
                                                                         dbListed.child(id).remove()
-                                                                        
-                                                                        }
+                                                                        let url = process.env.NODE_ENV =="PRODUCTION" ? "https://www.watchbidzwebsite.web.app/admin/home" : "http://localhost:3000/admin/home"
+                                                                        console.log(url)
+                                                                        window.location.assign(url)
+                                                                }
 
                                                                         }>
                                                                                 MARK AS COMPLETE

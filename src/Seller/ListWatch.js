@@ -82,7 +82,7 @@ const ListWatch = () => {
         const [manufacturer, setManufacturer] = useState("");
         const [modelNo, setModelNo] = useState("");
         const [year, setYear] = useState("");
-        const [boxBool, setBoxBool] = useState(null)
+        const [boxBool, setBoxBool] = useState(false)
         const [minimumAsk, setMinimumAsk] = useState("");
         const [photoCrown, setPhotoCrown] = useState(null);
         const [photoTime, setPhototime] = useState(null);
