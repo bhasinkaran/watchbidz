@@ -5,7 +5,7 @@ import { AppState } from '../context';
 import Countdown from 'react-countdown';
 
 import AuctionPhotos from '../AuctionPhotos'
-import { dbListed, dbSellers, dbRecentlyClosed, dbIncompleteDeals } from '../firebase/firebase';
+import { dbListed, dbSellers, dbRecentlyClosed, dbIncompleteDeals, dbBuyers } from '../firebase/firebase';
 import renderer from '../CountDownRenderer'
 const AuctionPageSeller = ({ access }) => {
 
@@ -96,6 +96,8 @@ const AuctionPageSeller = ({ access }) => {
                                                                                 const key = k.getKey();
                                                                                 console.log(key);
                                                                                 dbSellers.child(listed[id]['lister']).child('pastdeals').push(key);
+                                                                                dbBuyers.child(listed[id]['bidder']).child('pastdeals').push(key);
+
                                                                                 dbRecentlyClosed.child(key).child('id').set(key);
                                                                         }
                                                                         else{
@@ -129,7 +131,6 @@ const AuctionPageSeller = ({ access }) => {
                                                                         console.log(url)
                                                                         window.location.assign(url)
                                                                 }
-
                                                                         }>
                                                                                 MARK AS COMPLETE
                                                                         </Button>  
@@ -142,17 +143,25 @@ const AuctionPageSeller = ({ access }) => {
                                                 <Grid.Column width="16">
                                                         <Grid centered padded>
                                                                 <Grid.Row>
+                                                                        {listed[id]['active'] == true ? 
                                                                         <Segment attached color='purple'>
                                                                                 <Header as="h1">
                                                                                         Current Bid: {priceShowed}
                                                                                 </Header>
                                                                                 {/* <Header as="h2"> */}
-                                                                                {}<Countdown renderer={renderer} date={auctionItem.endDate} />
+                                                                                <Countdown renderer={renderer} date={auctionItem.endDate} />
+                                                                                        
                                                                                 {/* </Header> */}
                                                                                 <Header as="h3" textAlign='center'>
                                                                                         You indicated that you {auctionItem.boxBool ? "have" : "do not have"} papers from {auctionItem.manufacturer} for this purchase.
                                                                                 </Header>
                                                                         </Segment>
+                                                                                : 
+                                                                        <div>
+                                                                                PENDING REVIEW FROM WATCHBIDZ ADMINISTRATION
+                                                                        </div>
+                                                                        }
+                                                                        
                                                                         {/* <Segment attached color='purple'>
                                                                                 <Grid textAlign='center' padded>
                                                                                         <Grid.Column style={{ maxWidth: 450 }}>
