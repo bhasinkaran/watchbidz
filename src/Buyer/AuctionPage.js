@@ -75,7 +75,7 @@ const AuctionPage = () => {
                                                                 <Grid.Row>
                                                                         <Segment attached color='purple'>
                                                                                 <Header as="h1">
-                                                                                        Current Bid: {priceShowed}
+                                                                                        Current Bid: {priceShowed} {auctionItem.bidder==user  ? "- Your Bid": " - Not Your Bid"}
                                                                                 </Header>
                                                                                 {/* <Header as="h2"> */}
                                                                                 <Countdown  renderer={renderer} date={auctionItem.endDate} />

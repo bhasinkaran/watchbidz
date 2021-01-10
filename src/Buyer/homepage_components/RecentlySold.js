@@ -53,24 +53,27 @@ const useStyles = makeStyles((theme) => ({
  */
 const RecentlySold = () => {
         const someContext = useContext(AppState);
-        const { buyers, user, listed} = someContext;
+        const { buyers, user, recentlyclosed} = someContext;
 
         const classes = useStyles();
-        
-        if (buyers[user] &&buyers[user]['current']&& buyers[user]['current']!="None" && listed) {
+        console.log(recentlyclosed)
+        if (buyers[user] && recentlyclosed) {
                 return (
                         <div>
                         <div className={classes.root}>
-                                <GridList className={classes.gridList} cols={Math.min(Object.values(buyers[user]['current']).length,5)}>
-                                        {/* Object.values(sellers[user]['listed']).length */}
-                                        {Object.values(buyers[user]['listed']).map((item) => (
-                                                <GridListTile key={listed[item].modelNo}>
-                                                        <img src={listed[item].photoTime} alt={listed[item].modelNo} />
+                                <GridList className={classes.gridList} cols={Math.min(Object.keys(recentlyclosed).length,5)}>
+
+                                        {Object.values(recentlyclosed).map((item) => (
+                                                
+                                                <GridListTile key={item.modelNo + item.lister + item.bidder}>
+                                                        <img src={item.photoTime} alt={item.modelNo} />
                                                         <GridListTileBar
-                                                                title={listed[item].modelNo}
+                                                                title={item.modelNo}
                                                                 classes={{
                                                                         root: classes.titleBar,
                                                                         title: classes.title,
+                                                                        // imgFullHeight:'1000',
+                                                                        // imgFullWidth: '1000'
                                                                 }}
                                                                 actionIcon={
                                                                         <IconButton aria-label={`star `}>

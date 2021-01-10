@@ -67,7 +67,7 @@ const StateProvider = ({ children }) => {
                 return () => { dbRecentlyClosed.off('value', handleData); };
         }, []);
 
-        const api = { sellers, user, admins, setShowListed, showListed, setUser, listed, buyers, active, setActive,previous };
+        const api = { sellers, user, admins, setShowListed, showListed, setUser, listed, buyers, active, setActive,previous, recentlyclosed };
         return <Provider value={api}>{children}</Provider>;
 };
 

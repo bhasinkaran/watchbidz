@@ -92,12 +92,14 @@ const AuctionPageSeller = ({ access }) => {
                                                                                         bidder: listed[id]['bidder'],
                                                                                         lister: listed[id]['lister'],
                                                                                         "createdAt": {'.sv': 'timestamp'},
+                                                                                        photoCrown:listed[id]['photoCrown'],
+                                                                                        photoTime: listed[id]['photoTime'],
+                                                                                        photoLatch:listed[id]['photoLatch']
                                                                                 })
                                                                                 const key = k.getKey();
                                                                                 console.log(key);
                                                                                 dbSellers.child(listed[id]['lister']).child('pastdeals').push(key);
                                                                                 dbBuyers.child(listed[id]['bidder']).child('pastdeals').push(key);
-
                                                                                 dbRecentlyClosed.child(key).child('id').set(key);
                                                                         }
                                                                         else{
@@ -109,6 +111,9 @@ const AuctionPageSeller = ({ access }) => {
                                                                                         lister: listed[id]['lister'],
                                                                                         minimumAsk: listed[id]['minimumAsk'],
                                                                                         "createdAt": {'.sv': 'timestamp'},
+                                                                                        photoCrown:listed[id]['photoCrown'],
+                                                                                        photoTime: listed[id]['photoTime'],
+                                                                                        photoLatch:listed[id]['photoLatch']
                                                                                 
                                                                                 
                                                                                 })
